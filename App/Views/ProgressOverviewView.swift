@@ -29,15 +29,7 @@ struct ProgressOverviewView: View {
             Section("Überblick") {
               LabeledContent("Bearbeitete Aufgaben", value: "\(summary.latestByTask.count) von \(tasks.count)")
               LabeledContent("Übungstage diese Woche", value: "\(summary.practiceDaysThisWeek())")
-              NavigationLink {
-                TaskListScreen(
-                  title: "Schwächen üben",
-                  tasks: summary.weaknessPracticeSet(from: tasks),
-                  emptyTitle: "Noch keine Schwächen erkannt",
-                  emptyDescription: "Löse zuerst mindestens \(TopicStat.minimumAttempts) Aufgaben in einem Thema.",
-                  footnote: nil
-                )
-              } label: {
+              NavigationLink(value: TaskListRoute.weaknesses(track)) {
                 Label("Schwächen üben", systemImage: "target")
               }
             }

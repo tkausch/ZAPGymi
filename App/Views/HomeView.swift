@@ -16,7 +16,6 @@ struct HomeView: View {
     let tasks = catalog.tasks(for: track)
     let summary = ProgressSummary(attempts: attempts)
     let reviews = summary.dueReviews(in: tasks)
-    let practiceSet = summary.weaknessPracticeSet(from: tasks)
 
     NavigationStack {
       List {
@@ -57,15 +56,7 @@ struct HomeView: View {
         }
 
         Section("Üben") {
-          NavigationLink {
-            TaskListScreen(
-              title: "Zu wiederholen",
-              tasks: reviews,
-              emptyTitle: "Nichts fällig",
-              emptyDescription: "Alle bearbeiteten Aufgaben stimmen. Löse eine neue Aufgabe.",
-              footnote: "Aufgaben, die nicht ganz gestimmt haben, stehen hier, bis du sie richtig löst."
-            )
-          } label: {
+          NavigationLink(value: TaskListRoute.reviews(track)) {
             LabeledContent {
               Text(reviews.count, format: .number)
             } label: {
@@ -73,15 +64,7 @@ struct HomeView: View {
             }
           }
 
-          NavigationLink {
-            TaskListScreen(
-              title: "Schwächen üben",
-              tasks: practiceSet,
-              emptyTitle: "Noch keine Schwächen erkannt",
-              emptyDescription: "Löse zuerst mindestens \(TopicStat.minimumAttempts) Aufgaben in einem Thema. Dann stellt die App hier Aufgaben aus deinen schwächsten Themen zusammen.",
-              footnote: practiceSet.isEmpty ? nil : "Aufgaben aus deinen schwächsten Themen, ungelöste zuerst."
-            )
-          } label: {
+          NavigationLink(value: TaskListRoute.weaknesses(track)) {
             Label("Schwächen üben", systemImage: "target")
           }
         }

@@ -23,17 +23,7 @@ struct TipsView: View {
 
         Section {
           ForEach(statistics.topics) { topic in
-            NavigationLink {
-              TaskListScreen(
-                title: topic.topic,
-                tasks: mathTasks
-                  .filter { $0.topic == topic.topic }
-                  .sorted { $0.year != $1.year ? $0.year > $1.year : $0.sortKey < $1.sortKey },
-                emptyTitle: "Keine Aufgaben",
-                emptyDescription: "Zu diesem Thema gibt es keine Aufgaben.",
-                footnote: nil
-              )
-            } label: {
+            NavigationLink(value: TaskListRoute.mathTopic(track, topic.topic)) {
               TopicStatisticRow(statistic: topic, largestShare: largestShare, yearCount: statistics.years.count)
             }
           }
