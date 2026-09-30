@@ -35,6 +35,7 @@ struct EssayEditorView: View {
           }
       }
     }
+    .themedBackground()
     .navigationTitle(task.displayTitle)
     .navigationBarTitleDisplayMode(.inline)
     .toolbar {

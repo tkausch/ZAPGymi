@@ -5,6 +5,7 @@ struct ProgressOverviewView: View {
   var track: ExamTrack
   @Binding var selectedTab: AppTab
   @Environment(\.catalog) private var catalog
+  @Environment(\.appTheme) private var theme
   @Query private var attempts: [Attempt]
 
   var body: some View {
@@ -21,7 +22,12 @@ struct ProgressOverviewView: View {
           } description: {
             Text("Nach jeder Aufgabe schätzt du dich selbst ein. Daraus entsteht hier dein Stand pro Thema.")
           } actions: {
-            Button("Erste Aufgabe lösen") { selectedTab = .today }
+            Button {
+              selectedTab = .today
+            } label: {
+              Text("Erste Aufgabe lösen")
+                .foregroundStyle(theme.onAccent)
+            }
               .buttonStyle(.borderedProminent)
           }
         } else {
@@ -53,6 +59,7 @@ struct ProgressOverviewView: View {
           }
         }
       }
+      .themedBackground()
       .navigationTitle("Fortschritt")
       .examTaskDestinations()
     }
@@ -75,7 +82,6 @@ private struct TopicStatRow: View {
       }
       if stat.hasEnoughData {
         ProgressView(value: stat.score)
-          .tint(stat.score < 0.5 ? .orange : .accentColor)
       } else {
         Text("Noch zu wenig Daten (\(stat.attempted) von \(TopicStat.minimumAttempts))")
           .font(.caption)

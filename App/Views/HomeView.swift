@@ -82,6 +82,7 @@ struct HomeView: View {
           .accessibilityElement(children: .combine)
         }
       }
+      .themedBackground()
       .navigationTitle("Heute")
       .toolbar {
         ToolbarItem(placement: .topBarTrailing) {

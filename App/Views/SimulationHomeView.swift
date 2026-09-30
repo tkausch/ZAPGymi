@@ -70,6 +70,7 @@ struct SimulationHomeView: View {
           }
         }
       }
+      .themedBackground()
       .navigationTitle("Prüfung")
       .fullScreenCover(item: $activeSession) { session in
         SimulationRunView(session: session)
@@ -165,6 +166,7 @@ struct SimulationStartView: View {
         }
       }
     }
+    .themedBackground()
     .navigationTitle(subject.title)
     .alert(
       "Simulation starten?",

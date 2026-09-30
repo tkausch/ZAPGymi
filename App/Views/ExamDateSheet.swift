@@ -32,6 +32,7 @@ struct ExamDateSheet: View {
           }
         }
       }
+      .themedBackground()
       .navigationTitle("Prüfungsdatum")
       .navigationBarTitleDisplayMode(.inline)
       .toolbar {

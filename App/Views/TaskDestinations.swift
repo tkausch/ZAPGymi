@@ -96,6 +96,7 @@ struct TaskListScreen: View {
         ContentUnavailableView(emptyTitle, systemImage: "checkmark.seal", description: Text(emptyDescription))
       }
     }
+    .themedBackground()
     .navigationTitle(title)
     .navigationBarTitleDisplayMode(title.count > 18 ? .inline : .automatic)
   }

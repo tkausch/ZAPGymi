@@ -398,6 +398,69 @@ Weitere Befunde:
 
 ---
 
+## 9. Aussehen (Farbthemen)
+
+Sechs Farbthemen, damit sich die App über Monate des Übens «wie meine» anfühlt: Neon Night, Sunset Pop, Ocean Wave (Standard), Lime Zest, Galaxy, Calm Paper. Zusätzliche Akteurin: **Elternteil** (für 9.6).
+
+**Stand der Umsetzung (30.09.2026):** 9.1–9.5 umgesetzt, 9.6 nicht umgesetzt (Could, offene Frage).
+
+### 9.1 Ein Thema wählen
+**Als** Kind beim ersten Start **möchte ich** eines von 6 Themen wählen, **damit** sich die App wie meine anfühlt.
+
+*Priorität:* Must · *umgesetzt*
+
+**Akzeptanzkriterien**
+- **Gegeben** der erste Start **Wenn** das Onboarding den Schritt «Wähle deinen Look» erreicht (nach dem Prüfungstyp) **Dann** sind alle 6 Themen mit einer Vorschau zu sehen, und die Seite färbt sich live mit dem gewählten Thema.
+- **Gegeben** ich tippe auf «Überspringen» **Wenn** das Onboarding endet **Dann** gilt das Standardthema Ocean Wave, und ich kann es später in den Einstellungen ändern.
+
+### 9.2 Thema später wechseln
+**Als** Kind **möchte ich** das Thema in den Einstellungen wechseln, **damit** mir während Monaten des Übens nicht langweilig wird.
+
+*Priorität:* Must · *umgesetzt*
+
+**Akzeptanzkriterien**
+- **Gegeben** ich bin in Einstellungen → Farbthema **Wenn** ich ein anderes Thema wähle **Dann** ändert sich die ganze App sofort, auch das offene Einstellungsblatt.
+- **Gegeben** eine laufende Prüfungssimulation **Wenn** das Thema wechselt **Dann** gehen weder Antworten noch Timer verloren. (Die Simulation läuft im Vollbild; die Einstellungen sind dort nicht erreichbar. Der Timer rechnet ab der Startzeit und ist vom Aussehen unabhängig.)
+
+### 9.3 Thema überall
+**Als** Kind **möchte ich** mein Thema auf jedem Bildschirm sehen, auch in den Tipps und in der Themenstatistik, **damit** die App einheitlich aussieht.
+
+*Priorität:* Must · *umgesetzt*
+
+**Akzeptanzkriterien**
+- **Gegeben** ein beliebiges Thema **Wenn** ich einen beliebigen Tab öffne **Dann** folgen Akzentfarbe, Balken, Symbole, Buttons und Hintergrund dem Thema. Ausnahme: Die Prüfungs-PDFs bleiben im Original.
+- **Gegeben** die App startet neu **Wenn** sie sich öffnet **Dann** ist mein Thema noch aktiv.
+
+### 9.4 Gut lesbar
+**Als** Kind mit schwachen Augen oder Farbenblindheit **möchte ich** in jedem Thema alles lesen können, **damit** ich nicht ausgeschlossen werde.
+
+*Priorität:* Must · *umgesetzt, mit Einschränkung*
+
+**Akzeptanzkriterien**
+- **Gegeben** ein beliebiges Thema **Wenn** Text erscheint **Dann** beträgt der Kontrast mindestens 4.5:1 (Annahme). Geprüft für alle 6 Themen, hell und dunkel: Akzentfarbe auf Zeilen und Hintergrund 5.2–9.6:1, Schrift auf gefüllten Buttons 5.8–11.9:1 (im Dunkelmodus schwarze statt weisse Schrift), normaler Text auf Hintergrund über 18:1. Die Zeilen behalten den Systemhintergrund.
+- **Gegeben** eine richtige oder falsche Antwort **Wenn** sie angezeigt wird **Dann** hat sie ein Symbol oder Text (Häkchen, halber Kreis, Kreuz, «Richtig/Teilweise/Falsch»), nicht nur eine Farbe.
+- *Einschränkung:* Die graue Hilfsschrift von iOS (Fussnoten, Untertitel) erreicht auf hellem Hintergrund etwa 3:1, wie in allen Standard-Apps. Die Themen verschlechtern das nicht; für 4.5:1 müsste diese Schrift überall dunkler werden (siehe offene Fragen).
+
+### 9.5 Dunkelmodus
+**Als** Kind, das am Abend lernt, **möchte ich**, dass hell oder dunkel meinem Gerät folgt, **damit** meine Augen in der Nacht nicht schmerzen.
+
+*Priorität:* Should · *umgesetzt*
+
+**Akzeptanzkriterien**
+- **Gegeben** «Automatisch» **Wenn** iOS in den Dunkelmodus wechselt **Dann** wechselt das Thema auf seine dunkle Variante.
+- **Gegeben** ich wähle fest «Hell» oder «Dunkel» **Wenn** iOS wechselt **Dann** bleibt die App so, wie ich es eingestellt habe.
+
+### 9.6 Elternsperre
+**Als** Elternteil **möchte ich** das Thema in Prüfungswochen sperren, **damit** mein Kind beim Lernen bleibt.
+
+*Priorität:* Could · *nicht umgesetzt*
+
+**Akzeptanzkriterien**
+- **Gegeben** die Sperre ist aktiv **Wenn** mein Kind die Themenauswahl öffnet **Dann** ist sie deaktiviert und sagt, warum.
+- **Gegeben** die Eltern-Sperre wird nicht bestanden **Wenn** ich es nochmals versuche **Dann** ändert sich nichts.
+
+Hängt von der Eltern-Sperre aus den Requirements (6.1) ab, die es noch nicht gibt.
+
 ## Offene Fragen
 
 Durch die PDFs geklärt: Es gibt Lösungen (mit Lücken, siehe oben), die Punkte für Langzeit-Deutsch stehen in den PDFs, und die Originalzeiten sind bekannt.
@@ -411,6 +474,9 @@ Durch die PDFs geklärt: Es gibt Lösungen (mit Lücken, siehe oben), die Punkte
 7. **Themen zusammenführen:** Sollen ähnliche Mathematik-Kategorien (z. B. «Konstruktion» / «Geometrie: Konstruktion», «Zahlenfolgen» / «Zahlenfolgen und Muster») im JSON zusammengeführt werden, oder erst in der App?
 8. **Sprach-Thema «Textverständnis»:** Die Hälfte aller Sprachaufgaben hat dieses Thema. Reicht das, oder soll es feiner aufgeteilt werden (z. B. Detailfrage, Wortbedeutung, Aussage prüfen), damit 7.1 und 7.2 aussagekräftig sind?
 9. **Nutzungsrechte:** Die PDFs tragen das Logo des Kantons Zürich. Ist geklärt, dass sie in einer kommerziellen App gezeigt werden dürfen? (siehe Requirements, offene Frage 2)
+10. **Freischaltbare Themen:** Sollen später Themen dazukommen, die man durch regelmässiges Üben freischaltet, oder nie?
+11. **Elternsperre für das Thema (9.6):** Braucht es sie in v1? Sie setzt eine Eltern-Sperre voraus, die es noch nicht gibt.
+12. **Kontrast der Hilfsschrift (9.4):** Soll die graue Hilfsschrift überall dunkler werden, damit auch sie 4.5:1 erreicht? Das weicht vom iOS-Standard ab.
 
 ## Ausserhalb des Scopes (Kind)
 
@@ -420,3 +486,4 @@ Durch die PDFs geklärt: Es gibt Lösungen (mit Lücken, siehe oben), die Punkte
 - Wettbewerbe, Ranglisten oder Vergleich mit anderen Kindern
 - Aufgaben anderer Kantone als Zürich
 - Französisch und weitere Fächer (in den Daten nicht vorhanden)
+- Eigene Farben, saisonale Themen, Töne oder Maskottchen, Themen teilen

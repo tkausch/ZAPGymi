@@ -65,6 +65,7 @@ struct SimulationResultView: View {
         }
       }
     }
+    .themedBackground()
     .navigationTitle("\(session.subject.title) \(String(session.year))")
     .navigationBarTitleDisplayMode(.inline)
   }

@@ -5,6 +5,7 @@ struct SimulationGradingView: View {
   @Bindable var session: ExamSession
   @Environment(\.catalog) private var catalog
   @Environment(\.modelContext) private var modelContext
+  @Environment(\.appTheme) private var theme
   @State private var points: [String: Int] = [:]
   @State private var outcomes: [String: Outcome] = [:]
   @State private var shownDocument: ExamDocumentKind?
@@ -65,6 +66,7 @@ struct SimulationGradingView: View {
         Button(action: save) {
           Text("Auswertung speichern")
             .frame(maxWidth: .infinity)
+            .foregroundStyle(theme.onAccent)
         }
         .buttonStyle(.borderedProminent)
         .controlSize(.large)
@@ -72,6 +74,7 @@ struct SimulationGradingView: View {
         .listRowInsets(EdgeInsets())
       }
     }
+    .themedBackground()
     .navigationTitle("Auswerten")
     .navigationBarTitleDisplayMode(.inline)
     .sheet(item: $shownDocument) { kind in

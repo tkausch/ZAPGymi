@@ -4,6 +4,7 @@ import SwiftUI
 struct TaskDetailView: View {
   var task: ExamTask
   @Query private var attempts: [Attempt]
+  @Environment(\.appTheme) private var theme
   @State private var document = ExamDocumentKind.aufgaben
   @State private var solutionRevealed = false
   @State private var confirmsReveal = false
@@ -41,6 +42,7 @@ struct TaskDetailView: View {
     .safeAreaInset(edge: .bottom) {
       bottomBar
     }
+    .themedBackground()
     .navigationTitle("\(task.displayTitle) · \(String(task.year))")
     .navigationBarTitleDisplayMode(.inline)
     .toolbar {
@@ -96,6 +98,7 @@ struct TaskDetailView: View {
         } label: {
           Text("Selbst einschätzen")
             .frame(maxWidth: .infinity)
+            .foregroundStyle(theme.onAccent)
         }
         .buttonStyle(.borderedProminent)
         .controlSize(.large)
@@ -105,6 +108,7 @@ struct TaskDetailView: View {
         } label: {
           Text("Fertig – Lösung zeigen")
             .frame(maxWidth: .infinity)
+            .foregroundStyle(theme.onAccent)
         }
         .buttonStyle(.borderedProminent)
         .controlSize(.large)
@@ -163,6 +167,7 @@ struct TaskInfoSheet: View {
           }
         }
       }
+      .themedBackground()
       .navigationTitle(task.displayTitle)
       .navigationBarTitleDisplayMode(.inline)
       .toolbar {

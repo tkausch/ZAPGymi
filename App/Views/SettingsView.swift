@@ -4,6 +4,8 @@ import SwiftUI
 struct SettingsView: View {
   @AppStorage(SettingsKey.track) private var trackRaw = ""
   @AppStorage(SettingsKey.examDate) private var examDateValue: Double = 0
+  @AppStorage(SettingsKey.theme) private var themeRaw = AppTheme.standard.rawValue
+  @AppStorage(SettingsKey.appearance) private var appearanceRaw = AppearanceMode.automatic.rawValue
   @Environment(\.modelContext) private var modelContext
   @Environment(\.dismiss) private var dismiss
   @State private var confirmsDeletion = false
@@ -35,6 +37,23 @@ struct SettingsView: View {
         }
 
         Section {
+          NavigationLink {
+            ThemeSettingsView()
+          } label: {
+            LabeledContent("Farbthema", value: (AppTheme(rawValue: themeRaw) ?? .standard).title)
+          }
+          Picker("Hell oder dunkel", selection: $appearanceRaw) {
+            ForEach(AppearanceMode.allCases) { mode in
+              Text(mode.title).tag(mode.rawValue)
+            }
+          }
+        } header: {
+          Text("Aussehen")
+        } footer: {
+          Text("«Automatisch» folgt der Einstellung deines Geräts, zum Beispiel am Abend im Dunkelmodus.")
+        }
+
+        Section {
           Button("Alle Daten löschen", role: .destructive) {
             confirmsDeletion = true
           }
@@ -50,6 +69,7 @@ struct SettingsView: View {
             .foregroundStyle(.secondary)
         }
       }
+      .themedBackground()
       .navigationTitle("Einstellungen")
       .navigationBarTitleDisplayMode(.inline)
       .toolbar {
@@ -66,6 +86,9 @@ struct SettingsView: View {
         Text("Profil, Fortschritt, Aufsätze und Simulationen werden gelöscht. Das lässt sich nicht rückgängig machen.")
       }
     }
+    // An open sheet does not pick up tint changes from the app, so apply the theme here too.
+    .environment(\.appTheme, AppTheme(rawValue: themeRaw) ?? .standard)
+    .tint((AppTheme(rawValue: themeRaw) ?? .standard).accent)
   }
 
   private func deleteAll() {
@@ -74,6 +97,8 @@ struct SettingsView: View {
     try? modelContext.delete(model: ExamSession.self)
     try? modelContext.save()
     examDateValue = 0
+    themeRaw = AppTheme.standard.rawValue
+    appearanceRaw = AppearanceMode.automatic.rawValue
     dismiss()
     trackRaw = ""
   }

@@ -106,6 +106,7 @@ struct EssayDetailView: View {
         }
       }
     }
+    .themedBackground()
     .navigationTitle("Aufsatz")
     .navigationBarTitleDisplayMode(.inline)
     .navigationDestination(item: $openedDraft) { draft in

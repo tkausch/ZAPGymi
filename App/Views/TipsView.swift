@@ -33,6 +33,7 @@ struct TipsView: View {
           Text("Ausgewertet: \(statistics.taskCount) Mathematikaufgaben mit zusammen \(statistics.totalPoints) Punkten aus \(statistics.years.count) Jahrgängen. Themen mit vielen Punkten lohnen sich beim Üben besonders.")
         }
       }
+      .themedBackground()
       .navigationTitle("Tipps")
       .examTaskDestinations()
     }

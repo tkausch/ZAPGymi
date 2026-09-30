@@ -5,6 +5,7 @@ struct SimulationRunView: View {
   @Bindable var session: ExamSession
   @Environment(\.catalog) private var catalog
   @Environment(\.dismiss) private var dismiss
+  @Environment(\.appTheme) private var theme
   @State private var now = Date.now
   @State private var document = ExamDocumentKind.aufgaben
   @State private var confirmsSubmit = false
@@ -69,12 +70,14 @@ struct SimulationRunView: View {
       } label: {
         Text("Abgeben")
           .frame(maxWidth: .infinity)
+          .foregroundStyle(theme.onAccent)
       }
       .buttonStyle(.borderedProminent)
       .controlSize(.large)
       .padding()
       .background(.bar)
     }
+    .themedBackground()
     .navigationTitle("\(session.subject.title) \(String(session.year))")
     .navigationBarTitleDisplayMode(.inline)
     .toolbar {

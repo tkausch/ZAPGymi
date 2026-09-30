@@ -42,6 +42,7 @@ struct EssayChecklistView: View {
           }
         }
       }
+      .themedBackground()
       .navigationTitle("Einschätzen")
       .navigationBarTitleDisplayMode(.inline)
       .toolbar {

@@ -73,6 +73,7 @@ struct CatalogView: View {
           emptyState(allSolved: filter.onlyOpen && !unfiltered.isEmpty)
         }
       }
+      .themedBackground()
       .navigationTitle("Aufgaben")
       .searchable(text: $searchText, prompt: "Aufgaben durchsuchen")
       .toolbar {

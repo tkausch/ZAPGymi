@@ -1,9 +1,22 @@
 import SwiftUI
 
 struct OnboardingView: View {
-  var onSelect: (ExamTrack) -> Void
+  var onFinish: (ExamTrack, AppTheme) -> Void
+  @State private var track: ExamTrack?
+  @State private var theme = AppTheme.standard
 
   var body: some View {
+    Group {
+      if let track {
+        themeStep(track: track)
+      } else {
+        trackStep
+      }
+    }
+    .animation(.smooth, value: track)
+  }
+
+  private var trackStep: some View {
     ScrollView {
       VStack(spacing: 28) {
         VStack(spacing: 12) {
@@ -25,7 +38,7 @@ struct OnboardingView: View {
             .font(.headline)
           ForEach(ExamTrack.allCases) { track in
             Button {
-              onSelect(track)
+              self.track = track
             } label: {
               HStack(spacing: 16) {
                 VStack(alignment: .leading, spacing: 4) {
@@ -61,5 +74,48 @@ struct OnboardingView: View {
       .frame(maxWidth: 560)
       .frame(maxWidth: .infinity)
     }
+  }
+
+  private func themeStep(track: ExamTrack) -> some View {
+    ScrollView {
+      VStack(alignment: .leading, spacing: 20) {
+        Button("Zurück", systemImage: "chevron.backward") {
+          self.track = nil
+        }
+        .padding(.top, 12)
+
+        VStack(alignment: .leading, spacing: 8) {
+          Text("Wähle deinen Look")
+            .font(.largeTitle.bold())
+          Text("So sieht die App für dich aus. Du kannst das Thema jederzeit in den Einstellungen wechseln.")
+            .foregroundStyle(.secondary)
+        }
+
+        ThemePicker(selection: $theme)
+
+        VStack(spacing: 12) {
+          Button {
+            onFinish(track, theme)
+          } label: {
+            Text("Los geht’s")
+              .frame(maxWidth: .infinity)
+              .foregroundStyle(theme.onAccent)
+          }
+          .buttonStyle(.borderedProminent)
+          .controlSize(.large)
+
+          Button("Überspringen") {
+            onFinish(track, .standard)
+          }
+          .frame(maxWidth: .infinity)
+        }
+      }
+      .padding(24)
+      .frame(maxWidth: 640)
+      .frame(maxWidth: .infinity)
+    }
+    .environment(\.appTheme, theme)
+    .tint(theme.accent)
+    .themedBackground()
   }
 }

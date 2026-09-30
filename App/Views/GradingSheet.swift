@@ -46,6 +46,7 @@ struct GradingSheet: View {
           }
         }
       }
+      .themedBackground()
       .navigationTitle("Einschätzen")
       .navigationBarTitleDisplayMode(.inline)
       .toolbar {
