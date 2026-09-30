@@ -5,6 +5,7 @@ enum AppTab: Hashable {
   case tasks
   case exam
   case progress
+  case tips
 }
 
 struct MainTabView: View {
@@ -24,6 +25,9 @@ struct MainTabView: View {
       }
       Tab("Fortschritt", systemImage: "chart.bar", value: .progress) {
         ProgressOverviewView(track: track, selectedTab: $selectedTab)
+      }
+      Tab("Tipps", systemImage: "lightbulb", value: .tips) {
+        TipsView(track: track)
       }
     }
   }
