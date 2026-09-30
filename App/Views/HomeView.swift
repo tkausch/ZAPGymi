@@ -10,6 +10,7 @@ struct HomeView: View {
   @Query private var sessions: [ExamSession]
   @AppStorage(SettingsKey.examDate) private var examDateValue: Double = 0
   @State private var showsSettings = false
+  @State private var showsExamDate = false
 
   var body: some View {
     let tasks = catalog.tasks(for: track)
@@ -109,6 +110,9 @@ struct HomeView: View {
       .sheet(isPresented: $showsSettings) {
         SettingsView()
       }
+      .sheet(isPresented: $showsExamDate) {
+        ExamDateSheet()
+      }
       .examTaskDestinations()
     }
   }
@@ -127,13 +131,22 @@ struct HomeView: View {
         let calendar = Calendar.current
         let days = calendar.dateComponents([.day], from: calendar.startOfDay(for: .now), to: calendar.startOfDay(for: examDate)).day ?? 0
         if days > 0 {
-          VStack(alignment: .leading, spacing: 4) {
-            Text("Noch \(days) Tage")
-              .font(.largeTitle.bold())
-            Text("bis zur Prüfung am \(examDate.formatted(date: .long, time: .omitted))")
-              .foregroundStyle(.secondary)
+          Button {
+            showsExamDate = true
+          } label: {
+            VStack(alignment: .leading, spacing: 4) {
+              Text(days == 1 ? "Noch 1 Tag" : "Noch \(days) Tage")
+                .font(.largeTitle.bold())
+                .foregroundStyle(.primary)
+              Text("bis zur Prüfung am \(examDate.formatted(date: .long, time: .omitted))")
+                .foregroundStyle(.secondary)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .contentShape(.rect)
           }
+          .buttonStyle(.plain)
           .accessibilityElement(children: .combine)
+          .accessibilityHint("Prüfungsdatum ändern")
         } else if days == 0 {
           Text("Heute ist Prüfung. Viel Erfolg!")
             .font(.title2.bold())
@@ -142,13 +155,13 @@ struct HomeView: View {
             Text("Das Prüfungsdatum ist vorbei.")
               .font(.headline)
             Button("Neues Datum eintragen oder entfernen") {
-              showsSettings = true
+              showsExamDate = true
             }
           }
         }
       } else {
         Button {
-          showsSettings = true
+          showsExamDate = true
         } label: {
           Label("Prüfungsdatum eintragen", systemImage: "calendar")
         }

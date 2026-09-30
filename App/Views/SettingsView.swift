@@ -7,10 +7,7 @@ struct SettingsView: View {
   @Environment(\.modelContext) private var modelContext
   @Environment(\.dismiss) private var dismiss
   @State private var confirmsDeletion = false
-
-  private var tomorrow: Date {
-    Calendar.current.date(byAdding: .day, value: 1, to: Calendar.current.startOfDay(for: .now)) ?? .now
-  }
+  @State private var showsExamDate = false
 
   var body: some View {
     NavigationStack {
@@ -21,10 +18,16 @@ struct SettingsView: View {
               Text(track.title).tag(track.rawValue)
             }
           }
-          Toggle("Prüfungsdatum", isOn: hasExamDate)
-          if examDateValue > 0 {
-            DatePicker("Datum", selection: examDate, in: tomorrow..., displayedComponents: .date)
+          Button {
+            showsExamDate = true
+          } label: {
+            LabeledContent("Prüfungsdatum") {
+              Text(examDateValue > 0
+                ? Date(timeIntervalSinceReferenceDate: examDateValue).formatted(date: .long, time: .omitted)
+                : "Nicht eingetragen")
+            }
           }
+          .tint(.primary)
         } header: {
           Text("Prüfung")
         } footer: {
@@ -54,27 +57,14 @@ struct SettingsView: View {
           Button("Fertig") { dismiss() }
         }
       }
+      .sheet(isPresented: $showsExamDate) {
+        ExamDateSheet()
+      }
       .confirmationDialog("Alle Daten löschen?", isPresented: $confirmsDeletion, titleVisibility: .visible) {
         Button("Alles löschen", role: .destructive, action: deleteAll)
       } message: {
         Text("Profil, Fortschritt, Aufsätze und Simulationen werden gelöscht. Das lässt sich nicht rückgängig machen.")
       }
-    }
-  }
-
-  private var hasExamDate: Binding<Bool> {
-    Binding {
-      examDateValue > 0
-    } set: { isOn in
-      examDateValue = isOn ? Calendar.current.date(byAdding: .month, value: 3, to: .now)!.timeIntervalSinceReferenceDate : 0
-    }
-  }
-
-  private var examDate: Binding<Date> {
-    Binding {
-      Date(timeIntervalSinceReferenceDate: examDateValue)
-    } set: { date in
-      examDateValue = date.timeIntervalSinceReferenceDate
     }
   }
 
