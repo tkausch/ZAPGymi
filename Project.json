@@ -12,7 +12,7 @@
     "CODE_SIGN_IDENTITY": "-"
   },
   "targets": {
-    "New Project": {
+    "Gymi Trainer": {
       "deploymentTarget": "26.0",
       "info": {
         "path": "App/Info.plist",
