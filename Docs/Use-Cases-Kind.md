@@ -2,7 +2,7 @@
 
 **Stand:** 30. September 2026
 **Scope:** Alles, was das Kind (Langzeit und Kurzzeit) selbst in der App tut: Aufgaben finden, üben, Aufsätze schreiben, Prüfungen simulieren, Fortschritt sehen. Eltern, Inhaltspflege und Import sind in «Gymi-Vorbereitung App — Requirements» beschrieben und hier nur erwähnt, wo das Kind davon abhängt.
-**Grundlage:** `mathtasks.json`, `sprachpruefung.json`, `aufsatz.json` (Kanton Zürich, 2015 bis 2025). Die PDFs folgen später.
+**Grundlage:** `mathtasks.json`, `sprachpruefung.json`, `aufsatz.json` (Kanton Zürich, 2015 bis 2025) sowie die Mathematik- und Deutsch-PDFs mit Aufgaben, Lösungen, Textblättern und Aufsatzthemen.
 
 **Annahmen:**
 - Die Gymi-Prüfung wird auf Papier geschrieben. Die App übernimmt diese Realität: Das Kind löst Mathematik und längere Sprachaufgaben auf Papier und korrigiert sich anhand der Lösung selbst. Eingabe direkt in der App ist die Ausnahme, nicht die Regel.
@@ -31,7 +31,7 @@ Konsequenzen für das Kind:
 - **Ohne PDFs kann das Kind keine Mathematikaufgabe lösen**, weil die Aufgabe selbst fehlt. Die Mathe-Stories setzen die PDFs voraus.
 - **Automatische Korrektur ist mit diesen Daten nicht möglich.** Selbstkorrektur mit Punkten ist deshalb der Kern (3.2, 4.3), automatische Prüfung ist Could (3.3).
 - **Schwierigkeit gibt es nur in Mathematik.** Filter und Übungssätze nach Schwierigkeit gelten nur dort.
-- **Bei Langzeit-Sprachprüfungen gibt es keine Punkte.** Auswertungen müssen dort ohne Punktzahl auskommen.
+- **Bei Langzeit-Sprachprüfungen fehlen im JSON die Punkte.** In den PDFs stehen sie (siehe unten); bis sie übertragen sind, kommen Auswertungen dort ohne Punktzahl aus.
 
 ### Mathematik-PDFs (geliefert am 30.09.2026)
 
@@ -51,6 +51,33 @@ Weitere Befunde:
 - **Bewertungsregeln Langzeit:** «Ein richtiges Endergebnis ohne verständlichen Lösungsweg gibt 0 Punkte.» Fehlende Einheit im Endergebnis kostet 1 Punkt. Die Selbstkorrektur muss diese Regeln kennen, sonst gibt sich das Kind zu viele Punkte.
 - **Einige Aufgaben lassen sich nur auf Papier lösen:** Konstruktionen mit Zirkel, Diagramme zeichnen, Würfelnetze («weder ausschneiden noch nachbilden»). Die Lösung ist dann eine Zeichnung.
 - **Der Text in manchen PDFs ist nicht verwertbar:** doppelte Textschichten (2023 Kurzzeit) oder falsch codierte Formeln (2024 Kurzzeit). Aufgaben müssen deshalb als Bildausschnitt gezeigt werden, nicht als extrahierter Text.
+
+### Deutsch-PDFs (geliefert am 30.09.2026)
+
+79 PDFs: Sprachprüfung, Lösungen, Textblatt (Lesetext), Aufsatzthemen und einmal Korrekturhinweise zum Aufsatz.
+
+| | Sprachprüfung Aufgaben | Sprachprüfung Lösungen | Textblatt | Aufsatzthemen |
+|---|---|---|---|---|
+| Kurzzeit | 2015–2024 | 2015–2023 | 2015–2023 | 2015–2023 |
+| Langzeit | 2015–2024 | 2015–2023 | 2015–2022 | 2015–2023 |
+| **Fehlt** | 2025 (beide) | 2024, 2025 (beide) | Langzeit 2023; 2024, 2025 (beide) | 2024, 2025 (beide; im JSON vorhanden) |
+
+Zeiten und Hilfsmittel (aus den Deckblättern):
+
+| | Langzeit | Kurzzeit |
+|---|---|---|
+| Sprachprüfung | 45 Minuten, keine Hilfsmittel | 45 Minuten, keine Hilfsmittel, auch kein Wörterbuch |
+| Aufsatz | 60 Minuten, 3 Themen zur Wahl, Füllfeder oder Kugelschreiber | 90 Minuten, 4 Themen zur Wahl, **Rechtschreibwörterbuch erlaubt** |
+
+Weitere Befunde:
+- **Die Langzeit-Sprachprüfungen haben Punkte.** Sie stehen im PDF (z. B. 2015: «Aufgabe 1 2 P.», 2020: Total 51 P.), fehlen aber im JSON. Die Lücke lässt sich schliessen; Kurzzeit hat jeweils 75 Punkte.
+- **Die Lösungen sind Korrekturhinweise, keine einzelne richtige Antwort:** Musterantworten («1 Punkt für Antworten wie: …»), Zeilenverweise (Z. 1, Z. 5–6), Regeln wie «Orthografie wird nicht berücksichtigt» oder «1 Punkt Abzug für jede überzählige Unterstreichung, kein negatives Resultat». Damit wird die Selbstkorrektur (4.3) deutlich verlässlicher.
+- **Die Textblätter haben Zeilennummern** (5, 10, 15 …), auf die sich Fragen und Lösungen beziehen. Das bestätigt 4.1.
+- **Aufsatzthemen verweisen auf Material im PDF** (z. B. das Interview zu «Was bedeutet Familie?»). Es steht in den Themen-PDFs und kann angezeigt werden.
+- **Bewertungskriterien zum Aufsatz gibt es nur für Langzeit 2015** («Positiv fällt ins Gewicht, wenn … / Negativ, wenn …»). Für alle anderen Themen muss die Checkliste (5.3) aus der Aufgabenstellung abgeleitet werden.
+- **Das JSON und die PDFs widersprechen sich:** Langzeit 2020 hat Aufsatzthemen im PDF, fehlt aber im JSON; 2024 und 2025 sind im JSON, aber nicht als PDF da.
+- **Gescannt ohne Text:** 2020 komplett (Aufgaben, Lösungen, Aufsatz, Textblatt Langzeit). Dort geht Vorlesen (8.1) nur mit nachträglich erfasstem Text.
+- **Dateinamen sind nicht einheitlich** und lassen sich nicht automatisch zuordnen: `2020_sprachpruefung_kg.pdf` ist die **Lösung** Kurzzeit, `2020_sprachpruefung_kg1.pdf` die Aufgabe, `2020_sprachpruefung.pdf` die Aufgabe Langzeit, `2021_sprachprueufng_kg.pdf` die **Lösung** Kurzzeit 2021, `2016_textverstaendnis_teil_a.pdf` die Aufgabe Langzeit 2016, `2018_aufsatzthemen.pdf` und `2019_textblatt.pdf` gehören zu Langzeit.
 
 ---
 
@@ -217,8 +244,11 @@ Weitere Befunde:
 
 **Akzeptanzkriterien**
 - **Gegeben** eine Kurzzeit-Aufgabe mit `punktzahl` **Wenn** das Kind sich einstuft **Dann** vergibt es 0 bis `punktzahl` Punkte.
-- **Gegeben** eine Langzeit-Aufgabe ohne `punktzahl` **Wenn** das Kind sich einstuft **Dann** wählt es «richtig», «teilweise» oder «falsch», und nirgends erscheint eine erfundene Punktzahl.
+- **Gegeben** eine Langzeit-Aufgabe, deren Punkte noch nicht aus dem PDF ins JSON übertragen sind **Wenn** das Kind sich einstuft **Dann** wählt es «richtig», «teilweise» oder «falsch», und nirgends erscheint eine erfundene Punktzahl.
 - **Gegeben** eine Aufgabe mit mehreren Teilfragen (z. B. 2.1 bis 2.4) **Wenn** die Lösung erscheint **Dann** sind die Teilfragen einzeln zugeordnet, damit das Kind jede für sich vergleichen kann.
+- **Gegeben** eine Lösung mit Musterantworten («Antworten wie …») **Wenn** sie erscheint **Dann** ist klar, dass auch andere Formulierungen mit gleichem Inhalt zählen.
+- **Gegeben** eine Aufgabe mit Korrekturregel (z. B. Abzug für überzählige Unterstreichungen, Rechtschreibung zählt mit) **Wenn** das Kind sich einstuft **Dann** wird die Regel direkt bei der Einstufung angezeigt.
+- **Gegeben** ein Jahrgang ohne Lösung (2024) **Wenn** eine Aufgabe daraus geöffnet wird **Dann** ist vor dem Lösen erkennbar, dass es keine Lösung gibt.
 
 ### 4.4 Ankreuzaufgaben direkt in der App lösen
 **Als** Kind Kurzzeit **möchte ich** Multiple-Choice-Aufgaben direkt antippen und sofort korrigiert bekommen, **damit** ich schnelle Aufgaben auch unterwegs ohne Papier üben kann.
@@ -243,7 +273,8 @@ Weitere Befunde:
 - **Gegeben** ein gewählter Jahrgang **Wenn** die Themenwahl erscheint **Dann** zeigt sie alle Themen dieses Jahrgangs (Kurzzeit 4, Langzeit 3) mit Titel und Aufgabenstellung.
 - **Gegeben** ein Thema, das sich auf ein Bild, eine Skizze oder ein Interview bezieht (z. B. «Vor dem Bildschirm», «Radfahrer verletzt») **Wenn** das Material vorliegt **Dann** ist es beim Thema sichtbar; **wenn nicht**, ist das Thema als «Material fehlt» gekennzeichnet.
 - **Gegeben** ein Thema mit «(kein Titel vorgegeben)» **Wenn** es angezeigt wird **Dann** erscheint dieser Platzhalter nicht als Titel, sondern der Hinweis, dass das Kind selbst einen Titel setzen muss.
-- **Gegeben** Langzeit 2020 (im Datenbestand nicht vorhanden) **Wenn** die Jahrgänge erscheinen **Dann** fehlt dieser Jahrgang ohne Fehlermeldung.
+- **Gegeben** ein Jahrgang, der nur im JSON oder nur als PDF vorliegt (Langzeit 2020, 2024, 2025) **Wenn** die Jahrgänge erscheinen **Dann** werden nur Themen angeboten, zu denen Aufgabenstellung und nötiges Material vollständig vorliegen.
+- **Gegeben** Kurzzeit **Wenn** die Themenwahl erscheint **Dann** wird gesagt, dass an der Prüfung ein Rechtschreibwörterbuch erlaubt ist; bei Langzeit nicht.
 
 ### 5.2 Einen Aufsatz schreiben
 **Als** Kind **möchte ich** meinen Aufsatz mit der Prüfungszeit schreiben, auf Papier oder in der App, **damit** ich lerne, in dieser Zeit einen vollständigen Text mit Einleitung, Hauptteil und Schluss fertigzubekommen.
@@ -251,7 +282,7 @@ Weitere Befunde:
 *Priorität:* Should
 
 **Akzeptanzkriterien**
-- **Gegeben** ein gewähltes Thema **Wenn** das Kind startet **Dann** kann es zwischen «auf Papier» (nur Timer) und «in der App» (Texteingabe mit Timer) wählen.
+- **Gegeben** ein gewähltes Thema **Wenn** das Kind startet **Dann** kann es zwischen «auf Papier» (nur Timer) und «in der App» (Texteingabe mit Timer) wählen; die Zeit ist 60 Minuten (Langzeit) bzw. 90 Minuten (Kurzzeit).
 - **Gegeben** Texteingabe in der App **Wenn** die App unterbrochen oder beendet wird **Dann** ist der Text beim Zurückkehren vollständig da.
 - **Gegeben** Texteingabe in der App **Wenn** das Kind schreibt **Dann** ist die Wortzahl jederzeit abrufbar.
 - **Gegeben** die Zeit ist abgelaufen **Wenn** das Kind noch schreibt **Dann** wird es informiert, darf aber zu Ende schreiben; die Überziehung wird festgehalten.
@@ -264,6 +295,7 @@ Weitere Befunde:
 **Akzeptanzkriterien**
 - **Gegeben** ein abgeschlossener Aufsatz **Wenn** die Einschätzung startet **Dann** erscheinen die Teilaufträge aus der Aufgabenstellung als Checkliste (z. B. «Erkläre, wie es dazu kam» / «Erzähle ein Erlebnis» / «Ziehe ein Fazit»).
 - **Gegeben** eine Langzeit-Aufgabe mit Formvorgabe (Präteritum, Ich-Form, Zeitungsbericht) **Wenn** die Checkliste erscheint **Dann** sind diese Vorgaben eigene Punkte darauf.
+- **Gegeben** ein Thema mit offiziellen Korrekturhinweisen (bisher nur Langzeit 2015) **Wenn** die Checkliste erscheint **Dann** enthält sie die Punkte daraus, getrennt nach «spricht dafür» und «spricht dagegen» (z. B. «wenn nicht im Präteritum erzählt wird»).
 - **Gegeben** eine eingestufte Checkliste **Wenn** das Kind abschliesst **Dann** ist das Ergebnis beim Aufsatz gespeichert und später wieder einsehbar.
 - **Gegeben** ein leerer oder sehr kurzer Text (unter 150 Wörtern, Annahme) **Wenn** das Kind die Einschätzung starten will **Dann** wird es vorher darauf hingewiesen.
 
@@ -303,7 +335,7 @@ Weitere Befunde:
 - **Gegeben** keine bekannte Bestehensgrenze **Wenn** die Auswertung erscheint **Dann** wird keine Aussage über Bestehen gemacht.
 - **Gegeben** eine zweite Simulation **Wenn** die Auswertung erscheint **Dann** ist der Vergleich zur letzten Simulation desselben Fachs sichtbar.
 
-**Rahmenbedingungen (Simulation):** Restzeit aus der Systemuhr, nicht durch Uhrverstellen verlängerbar. Zeitzuschlag gemäss Eltern-Einstellung (Requirements 6.4). Mathematik: Langzeit 60 Minuten ohne Taschenrechner, Kurzzeit 90 Minuten mit Taschenrechner (aus den PDFs). Zeiten für Sprachprüfung und Aufsatz fehlen noch. Kurzzeit-Auswertungen zeigen Punkte getrennt nach Algebra und Geometrie, wie in der offiziellen Punkteverteilung.
+**Rahmenbedingungen (Simulation):** Restzeit aus der Systemuhr, nicht durch Uhrverstellen verlängerbar. Zeitzuschlag gemäss Eltern-Einstellung (Requirements 6.4). Originalzeiten aus den PDFs: Langzeit Mathematik 60, Sprachprüfung 45, Aufsatz 60 Minuten (zusammen 165); Kurzzeit Mathematik 90, Sprachprüfung 45, Aufsatz 90 Minuten (zusammen 225). Hilfsmittel wie im Original: Taschenrechner nur Kurzzeit-Mathematik, Wörterbuch nur Kurzzeit-Aufsatz. Eine vollständige Simulation braucht alle drei Teile eines Jahrgangs samt Lösungen; das ist heute nur für 2015–2023 der Fall (Langzeit 2020: ohne Mathematiklösungen; Langzeit 2023: ohne Textblatt). Kurzzeit-Auswertungen zeigen Punkte getrennt nach Algebra und Geometrie, wie in der offiziellen Punkteverteilung.
 
 ---
 
@@ -374,15 +406,17 @@ Weitere Befunde:
 
 ## Offene Fragen
 
-1. **PDF-Zuordnung:** Wie wird eine Aufgabe (z. B. `2015-Langgymnasium-1a`) ihrem Ausschnitt im PDF zugeordnet — Seite plus Bereich, oder schneidest du die Aufgaben vorab als Bilder zu? Davon hängen 3.1, 4.1 und 5.1 ab.
-2. **Lösungen:** Liegen für alle Jahrgänge offizielle Lösungen als PDF vor, und für Mathematik auch Lösungswege? Ohne sie entfallen 3.2 und 4.3 als Kern der App.
-3. **Punkte Langzeit-Sprachprüfung:** Sind die Punkte in den Langzeit-PDFs vorhanden und fehlen nur im JSON? Dann sollte das JSON ergänzt werden, und 4.3 / 6.3 werden einfacher.
-4. **Originalzeiten:** Welche Zeit gilt je Fach und Jahrgang? Das JSON enthält keine. Ohne sie gibt es keine Simulation (6.1, 6.2) und keine Zeitschätzung (1.3).
+Durch die PDFs geklärt: Es gibt Lösungen (mit Lücken, siehe oben), die Punkte für Langzeit-Deutsch stehen in den PDFs, und die Originalzeiten sind bekannt.
+
+1. **Aufgaben aus den PDFs ausschneiden:** Schneidest du jede Aufgabe vorab als Bild zu, oder soll das JSON Seite und Bereich im PDF angeben? Wegen gescannter Seiten und unbrauchbarer Textschichten geht es nur über Bildausschnitte. Davon hängen 3.1, 4.1 und 5.1 ab.
+2. **Fehlende Dateien:** Kommen noch Mathematiklösungen Langzeit 2020, Deutschlösungen 2024, Textblatt Langzeit 2023, Textblätter 2024, Sprachprüfung 2025 (Aufgaben, Lösungen, Textblatt) und Aufsatzthemen 2024/2025? Sonst sind diese Jahrgänge nur eingeschränkt nutzbar und nicht simulierbar.
+3. **JSON ergänzen:** Sollen die Punkte der Langzeit-Sprachprüfung, der Aufsatz Langzeit 2020 und die Einteilung Algebra/Geometrie (Kurzzeit-Mathematik) ins JSON übertragen werden? Alle drei stehen in den PDFs.
+4. **Korrekturhinweise übernehmen:** Sollen Musterantworten, Korrekturregeln und Bewertungsraster als Text ins JSON, damit die Selbstkorrektur sie direkt anzeigen kann (3.2, 4.3)? Oder reicht es, die Lösungsseite als Bild zu zeigen?
 5. **Eingabe in der App:** Soll Mathematik bewusst auf Papier bleiben (wie in der Prüfung), oder willst du mittelfristig Eingabe in der App (3.3, 4.4)? Das entscheidet, ob Lösungswerte und strukturierte Antwortoptionen ins JSON müssen.
-6. **Aufsatz Langzeit 2020:** Fehlt der Jahrgang absichtlich (z. B. Corona) oder nur im JSON?
-7. **Einheitliches Schema:** Mathematik nutzt englische Feldnamen und einen `key`, Sprache und Aufsatz deutsche Feldnamen ohne `key`. Sollen alle drei einen stabilen `key` im selben Format bekommen, damit Fortschritt Katalog-Updates übersteht?
-8. **Themen zusammenführen:** Sollen ähnliche Mathematik-Kategorien (z. B. «Konstruktion» / «Geometrie: Konstruktion», «Zahlenfolgen» / «Zahlenfolgen und Muster») im JSON zusammengeführt werden, oder erst in der App?
-9. **Sprach-Thema «Textverständnis»:** Die Hälfte aller Sprachaufgaben hat dieses Thema. Reicht das, oder soll es feiner aufgeteilt werden (z. B. Detailfrage, Wortbedeutung, Aussage prüfen), damit 7.1 und 7.2 aussagekräftig sind?
+6. **Einheitliches Schema und Dateinamen:** Mathematik nutzt englische Feldnamen und einen `key`, Sprache und Aufsatz deutsche Feldnamen ohne `key`; die PDF-Namen sind uneinheitlich (z. B. `2021_sprachprueufng_kg.pdf` ist eine Lösung). Sollen alle Inhalte einen stabilen `key` im selben Format bekommen und die PDFs danach benannt werden?
+7. **Themen zusammenführen:** Sollen ähnliche Mathematik-Kategorien (z. B. «Konstruktion» / «Geometrie: Konstruktion», «Zahlenfolgen» / «Zahlenfolgen und Muster») im JSON zusammengeführt werden, oder erst in der App?
+8. **Sprach-Thema «Textverständnis»:** Die Hälfte aller Sprachaufgaben hat dieses Thema. Reicht das, oder soll es feiner aufgeteilt werden (z. B. Detailfrage, Wortbedeutung, Aussage prüfen), damit 7.1 und 7.2 aussagekräftig sind?
+9. **Nutzungsrechte:** Die PDFs tragen das Logo des Kantons Zürich. Ist geklärt, dass sie in einer kommerziellen App gezeigt werden dürfen? (siehe Requirements, offene Frage 2)
 
 ## Ausserhalb des Scopes (Kind)
 
