@@ -33,6 +33,25 @@ Konsequenzen für das Kind:
 - **Schwierigkeit gibt es nur in Mathematik.** Filter und Übungssätze nach Schwierigkeit gelten nur dort.
 - **Bei Langzeit-Sprachprüfungen gibt es keine Punkte.** Auswertungen müssen dort ohne Punktzahl auskommen.
 
+### Mathematik-PDFs (geliefert am 30.09.2026)
+
+43 PDFs: Aufgaben 2015–2025 für beide Typen vollständig (22), Lösungen 21. **Es fehlen die Lösungen Langzeit 2020.**
+
+| | Langzeit (ZAP 1) | Kurzzeit (ZAP 2) |
+|---|---|---|
+| Prüfungszeit | 60 Minuten | 90 Minuten (in allen lesbaren Heften gleich; 2016–2018 nicht maschinenlesbar, Annahme: ebenfalls 90) |
+| Taschenrechner | **verboten** | **erlaubt**: bis 2021 «übliche Sekundarschulrechner», ab 2020 nur bestimmte Modelle (TI-30, Casio FX-82, Sharp EL-501) |
+| Aufbau | 9 Aufgaben à 4 Punkte = 36, teils mit a/b | 18–20 Teilaufgaben à 1–4 Punkte, 34–44 Punkte; jede Teilaufgabe ist als Algebra oder Geometrie ausgewiesen |
+| Lösungen | 2015, 2023, 2024, 2025: **ausführliches Korrekturschema** mit Zwischenergebnissen und Bewertungsraster je Punktstufe. 2016–2019, 2021, 2022: **nur 1 Seite Endergebnisse**, ohne Lösungsweg | Endergebnisse mit Punkten je Teilaufgabe, teils mit Teilpunkten und Lösungsskizzen |
+| Gescannt ohne Text | Aufgaben 2020 und 2021; Lösungen 2016, 2017, 2018, 2021 | Aufgaben 2016–2018 (teilweise) und 2020 |
+
+Weitere Befunde:
+- **Die Punkte im JSON stimmen mit den Punktetabellen der PDFs überein** (z. B. Kurzzeit 2015: 41, 2020: 38, 2024: 37, 2025: 39). Der `key` lässt sich also sicher einer Aufgabe im PDF zuordnen.
+- **Die Lösungen nennen gleichwertige Schreibweisen ausdrücklich**, z. B. «20 min 2 s (oder 20 1/30 min und 1202 s)». Das ist genau die Grundlage, die 3.3 braucht; sie muss nur ins JSON übertragen werden.
+- **Bewertungsregeln Langzeit:** «Ein richtiges Endergebnis ohne verständlichen Lösungsweg gibt 0 Punkte.» Fehlende Einheit im Endergebnis kostet 1 Punkt. Die Selbstkorrektur muss diese Regeln kennen, sonst gibt sich das Kind zu viele Punkte.
+- **Einige Aufgaben lassen sich nur auf Papier lösen:** Konstruktionen mit Zirkel, Diagramme zeichnen, Würfelnetze («weder ausschneiden noch nachbilden»). Die Lösung ist dann eine Zeichnung.
+- **Der Text in manchen PDFs ist nicht verwertbar:** doppelte Textschichten (2023 Kurzzeit) oder falsch codierte Formeln (2024 Kurzzeit). Aufgaben müssen deshalb als Bildausschnitt gezeigt werden, nicht als extrahierter Text.
+
 ---
 
 ## Akteure
@@ -127,6 +146,8 @@ Konsequenzen für das Kind:
 - **Gegeben** eine Teilaufgabe (1a, 1b) mit gemeinsamem Einleitungstext **Wenn** 1b geöffnet wird **Dann** ist der gemeinsame Einleitungstext ebenfalls sichtbar.
 - **Gegeben** eine Aufgabe ohne PDF-Ausschnitt **Wenn** sie in einer Liste erscheint **Dann** ist sie als «noch nicht verfügbar» erkennbar und lässt sich nicht öffnen.
 - **Gegeben** eine Konstruktionsaufgabe (`category` Konstruktion) **Wenn** sie geöffnet wird **Dann** wird das Kind darauf hingewiesen, Zirkel und Geodreieck bereitzulegen.
+- **Gegeben** eine Langzeit-Aufgabe **Wenn** sie geöffnet wird **Dann** wird das Kind daran erinnert, ohne Taschenrechner zu rechnen; **gegeben** eine Kurzzeit-Aufgabe, **dann** wird gesagt, dass ein einfacher Taschenrechner erlaubt ist.
+- **Gegeben** eine Aufgabe auf Häuschenpapier im Original **Wenn** das Kind sie ausdrucken will **Dann** wird der Ausschnitt mit Lösungsfläche gedruckt (Annahme: Drucken ist Could).
 
 ### 3.2 Lösung aufdecken und sich selbst Punkte geben
 **Als** Kind Kurzzeit **möchte ich** nach dem Rechnen die offizielle Lösung sehen und mir selbst Punkte geben, auch Teilpunkte, **damit** meine Statistik ehrlich zeigt, wo ich stehe, obwohl die App meine Rechnung auf Papier nicht lesen kann.
@@ -136,19 +157,33 @@ Konsequenzen für das Kind:
 **Akzeptanzkriterien**
 - **Gegeben** eine geöffnete Aufgabe **Wenn** das Kind «Lösung zeigen» wählt **Dann** wird zuerst gefragt, ob es fertig ist, damit die Lösung nicht versehentlich zu früh erscheint.
 - **Gegeben** die sichtbare Lösung **Wenn** das Kind sich einstuft **Dann** kann es 0 bis zur Punktzahl aus `points` vergeben, in ganzen Punkten.
+- **Gegeben** eine Aufgabe mit Bewertungsraster im Korrekturschema (Langzeit 2015, 2023–2025) **Wenn** das Kind sich einstuft **Dann** wählt es die Stufe, die auf seinen Lösungsweg zutrifft (z. B. «richtiger Lösungsweg, Rechenfehler»), und die Punkte ergeben sich daraus.
+- **Gegeben** eine Langzeit-Aufgabe **Wenn** das Kind die volle Punktzahl geben will **Dann** wird es gefragt, ob der Lösungsweg aufgeschrieben ist und die Einheit stimmt, weil sonst an der Prüfung Punkte abgezogen werden.
+- **Gegeben** eine Lösung, die nur als Zeichnung vorliegt (Konstruktion) **Wenn** sie erscheint **Dann** kann das Kind sie vergrössern, um die eigene Zeichnung zu vergleichen.
 - **Gegeben** die Lösung wurde angesehen, bevor das Kind etwas eingestuft hat **Wenn** es die Aufgabe schliesst **Dann** gilt sie als «angeschaut, nicht gelöst» und zählt nicht als richtig.
 - **Gegeben** keine Lösung im Datenbestand **Wenn** «Lösung zeigen» gewählt wird **Dann** sagt die App offen, dass keine vorliegt, und das Kind kann sich trotzdem einstufen oder die Aufgabe für die Eltern markieren.
 
 ### 3.3 Endresultat eintippen und prüfen lassen
 **Als** Kind Langzeit **möchte ich** bei Aufgaben mit einem eindeutigen Endresultat die Zahl eintippen und sofort erfahren, ob sie stimmt, **damit** ich nicht selbst beurteilen muss, ob «3 min 20 s» dasselbe ist wie «200 s».
 
-*Priorität:* Could (braucht ein neues Feld mit Lösungswert und Einheit je Aufgabe)
+*Priorität:* Could (braucht ein neues Feld mit Lösungswert und Einheit je Aufgabe; die Werte samt gleichwertigen Schreibweisen stehen in den Lösungs-PDFs und müssen übertragen werden. Nicht geeignet für Konstruktionen, Diagramme und Aufgaben mit mehreren Lösungen wie Kombinatorik)
 
 **Akzeptanzkriterien**
 - **Gegeben** eine Aufgabe mit hinterlegtem Lösungswert **Wenn** ein gleichwertiger Wert eingegeben wird (0,5 / 1/2 / 0.5; 3 min 20 s / 200 s) **Dann** gilt er als richtig.
 - **Gegeben** ein richtiges Resultat mit falscher oder fehlender Einheit **Wenn** geprüft wird **Dann** wird auf die Einheit hingewiesen, statt die Antwort als falsch zu werten.
 - **Gegeben** eine falsche Eingabe **Wenn** die Rückmeldung erscheint **Dann** darf das Kind es noch einmal versuchen, bevor die Lösung gezeigt wird.
 - **Gegeben** eine Aufgabe ohne Lösungswert **Wenn** sie geöffnet wird **Dann** gibt es kein Eingabefeld, sondern den Ablauf aus 3.2.
+- **Gegeben** ein richtiges Endresultat bei einer Langzeit-Aufgabe **Wenn** die Rückmeldung erscheint **Dann** wird daran erinnert, dass an der Prüfung ohne Lösungsweg 0 Punkte vergeben werden.
+
+### 3.4 Lösungsweg nachvollziehen
+**Als** Kind Langzeit mit falschem Resultat **möchte ich** die Zwischenergebnisse der offiziellen Lösung Schritt für Schritt aufdecken, **damit** ich herausfinde, an welcher Stelle ich falsch abgebogen bin, und nicht nur die richtige Zahl sehe.
+
+*Priorität:* Should
+
+**Akzeptanzkriterien**
+- **Gegeben** eine Aufgabe mit Zwischenergebnissen im Korrekturschema (z. B. 2015 Aufgabe 1a: «459 s : 17 = 27 s», dann «19 min 35 s + 27 s = 20 min 2 s») **Wenn** das Kind den Lösungsweg öffnet **Dann** wird ein Zwischenergebnis nach dem anderen aufgedeckt.
+- **Gegeben** eine Aufgabe, zu der nur das Endergebnis vorliegt (Langzeit 2016–2019, 2021, 2022) **Wenn** das Kind den Lösungsweg öffnen will **Dann** sagt die App, dass kein Lösungsweg vorhanden ist, und zeigt nur das Endergebnis.
+- **Gegeben** Langzeit 2020 (keine Lösungen vorhanden) **Wenn** eine Aufgabe dieses Jahrgangs geöffnet wird **Dann** ist vor dem Lösen klar erkennbar, dass es keine Lösung gibt.
 
 ---
 
@@ -268,7 +303,7 @@ Konsequenzen für das Kind:
 - **Gegeben** keine bekannte Bestehensgrenze **Wenn** die Auswertung erscheint **Dann** wird keine Aussage über Bestehen gemacht.
 - **Gegeben** eine zweite Simulation **Wenn** die Auswertung erscheint **Dann** ist der Vergleich zur letzten Simulation desselben Fachs sichtbar.
 
-**Rahmenbedingungen (Simulation):** Restzeit aus der Systemuhr, nicht durch Uhrverstellen verlängerbar. Zeitzuschlag gemäss Eltern-Einstellung (Requirements 6.4). Originalzeiten je Fach und Jahr fehlen im JSON und müssen ergänzt werden.
+**Rahmenbedingungen (Simulation):** Restzeit aus der Systemuhr, nicht durch Uhrverstellen verlängerbar. Zeitzuschlag gemäss Eltern-Einstellung (Requirements 6.4). Mathematik: Langzeit 60 Minuten ohne Taschenrechner, Kurzzeit 90 Minuten mit Taschenrechner (aus den PDFs). Zeiten für Sprachprüfung und Aufsatz fehlen noch. Kurzzeit-Auswertungen zeigen Punkte getrennt nach Algebra und Geometrie, wie in der offiziellen Punkteverteilung.
 
 ---
 
