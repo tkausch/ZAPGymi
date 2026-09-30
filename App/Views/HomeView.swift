@@ -61,8 +61,8 @@ struct HomeView: View {
               title: "Zu wiederholen",
               tasks: reviews,
               emptyTitle: "Nichts fällig",
-              emptyDescription: "Im Moment steht keine Wiederholung an. Löse eine neue Aufgabe.",
-              footnote: "Aufgaben, die nicht ganz gestimmt haben, kommen nach drei Tagen wieder."
+              emptyDescription: "Alle bearbeiteten Aufgaben stimmen. Löse eine neue Aufgabe.",
+              footnote: "Aufgaben, die nicht ganz gestimmt haben, stehen hier, bis du sie richtig löst."
             )
           } label: {
             LabeledContent {

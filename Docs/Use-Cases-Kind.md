@@ -356,12 +356,12 @@ Weitere Befunde:
 - **Gegeben** noch keine erkennbaren Schwächen **Wenn** «Schwächen üben» gewählt wird **Dann** wird stattdessen eine gemischte Übung angeboten und erklärt, warum.
 
 ### 7.3 Falsche Aufgaben wiederholen
-**Als** wiederkehrendes Kind **möchte ich**, dass Aufgaben, bei denen ich weniger als die volle Punktzahl hatte, nach einigen Tagen wiederkommen, **damit** ich den Lösungsweg wirklich kann und ihn nicht nur einmal gesehen habe.
+**Als** wiederkehrendes Kind **möchte ich**, dass Aufgaben, bei denen ich weniger als die volle Punktzahl hatte, gesammelt für eine Wiederholung bereitstehen, **damit** ich den Lösungsweg wirklich kann und ihn nicht nur einmal gesehen habe.
 
 *Priorität:* Should
 
 **Akzeptanzkriterien**
-- **Gegeben** eine Aufgabe mit weniger als voller Punktzahl oder «falsch» **Wenn** 3 Tage vergangen sind (Annahme) **Dann** steht sie in «Zu wiederholen».
+- **Gegeben** eine Aufgabe mit weniger als voller Punktzahl oder «falsch» **Wenn** das Kind sich eingeschätzt hat **Dann** steht sie sofort in «Zu wiederholen» (Entscheid 30.09.2026: sofort statt nach 3 Tagen, weil intuitiver).
 - **Gegeben** eine wiederholte Aufgabe mit voller Punktzahl **Wenn** sie eingestuft ist **Dann** kommt sie erst nach längerer Frist (Annahme: 10 Tage) oder gar nicht mehr.
 - **Gegeben** eine leere Wiederholungsliste **Wenn** sie geöffnet wird **Dann** sagt die App, dass nichts ansteht, und schlägt eine neue Übung vor.
 

@@ -26,8 +26,6 @@ struct TopicStat: Identifiable {
 
 /// Derives progress, reviews and suggestions from the child's attempts.
 struct ProgressSummary {
-  /// Assumption: a task that was not fully solved comes back after three days.
-  static let reviewDelay: TimeInterval = 3 * 24 * 60 * 60
   /// Assumption: a practice set has ten tasks.
   static let practiceSetSize = 10
   /// Assumption: four practice days per week are a good routine.
@@ -52,11 +50,11 @@ struct ProgressSummary {
     attempts.filter { $0.taskID == task.id }.sorted { $0.date > $1.date }
   }
 
-  /// Tasks whose latest attempt was not fully correct and is at least three days old.
-  func dueReviews(in tasks: [ExamTask], now: Date = .now) -> [ExamTask] {
+  /// Tasks whose latest attempt was not fully correct, right after grading.
+  func dueReviews(in tasks: [ExamTask]) -> [ExamTask] {
     tasks.filter { task in
-      guard let latest = latestByTask[task.id], latest.outcome != .richtig, task.subject != .aufsatz else { return false }
-      return now.timeIntervalSince(latest.date) >= Self.reviewDelay
+      guard let latest = latestByTask[task.id], task.subject != .aufsatz else { return false }
+      return latest.outcome != .richtig
     }
     .sorted { (latestByTask[$0.id]?.date ?? .distantPast) < (latestByTask[$1.id]?.date ?? .distantPast) }
   }
