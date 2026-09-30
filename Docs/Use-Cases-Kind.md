@@ -35,15 +35,15 @@ Konsequenzen für das Kind:
 
 ### Mathematik-PDFs (geliefert am 30.09.2026)
 
-43 PDFs: Aufgaben 2015–2025 für beide Typen vollständig (22), Lösungen 21. **Es fehlen die Lösungen Langzeit 2020.**
+44 PDFs: Aufgaben und Lösungen 2015–2025 für beide Typen vollständig. Die Lösungen Langzeit 2020 kamen nachträglich von zh.ch.
 
 | | Langzeit (ZAP 1) | Kurzzeit (ZAP 2) |
 |---|---|---|
 | Prüfungszeit | 60 Minuten | 90 Minuten (in allen lesbaren Heften gleich; 2016–2018 nicht maschinenlesbar, Annahme: ebenfalls 90) |
 | Taschenrechner | **verboten** | **erlaubt**: bis 2021 «übliche Sekundarschulrechner», ab 2020 nur bestimmte Modelle (TI-30, Casio FX-82, Sharp EL-501) |
 | Aufbau | 9 Aufgaben à 4 Punkte = 36, teils mit a/b | 18–20 Teilaufgaben à 1–4 Punkte, 34–44 Punkte; jede Teilaufgabe ist als Algebra oder Geometrie ausgewiesen |
-| Lösungen | 2015, 2023, 2024, 2025: **ausführliches Korrekturschema** mit Zwischenergebnissen und Bewertungsraster je Punktstufe. 2016–2019, 2021, 2022: **nur 1 Seite Endergebnisse**, ohne Lösungsweg | Endergebnisse mit Punkten je Teilaufgabe, teils mit Teilpunkten und Lösungsskizzen |
-| Gescannt ohne Text | Aufgaben 2020 und 2021; Lösungen 2016, 2017, 2018, 2021 | Aufgaben 2016–2018 (teilweise) und 2020 |
+| Lösungen | 2015, 2023, 2024, 2025: **ausführliches Korrekturschema** mit Zwischenergebnissen und Bewertungsraster je Punktstufe. 2016–2022: **nur 1 Seite Endergebnisse**, ohne Lösungsweg | Endergebnisse mit Punkten je Teilaufgabe, teils mit Teilpunkten und Lösungsskizzen |
+| Gescannt ohne Text | Aufgaben 2020 und 2021; Lösungen 2016, 2017, 2018, 2020, 2021 | Aufgaben 2016–2018 (teilweise) und 2020 |
 
 Weitere Befunde:
 - **Die Punkte im JSON stimmen mit den Punktetabellen der PDFs überein** (z. B. Kurzzeit 2015: 41, 2020: 38, 2024: 37, 2025: 39). Der `key` lässt sich also sicher einer Aufgabe im PDF zuordnen.
@@ -54,13 +54,7 @@ Weitere Befunde:
 
 ### Deutsch-PDFs (geliefert am 30.09.2026)
 
-79 PDFs: Sprachprüfung, Lösungen, Textblatt (Lesetext), Aufsatzthemen und einmal Korrekturhinweise zum Aufsatz.
-
-| | Sprachprüfung Aufgaben | Sprachprüfung Lösungen | Textblatt | Aufsatzthemen |
-|---|---|---|---|---|
-| Kurzzeit | 2015–2024 | 2015–2023 | 2015–2023 | 2015–2023 |
-| Langzeit | 2015–2024 | 2015–2023 | 2015–2022 | 2015–2023 |
-| **Fehlt** | 2025 (beide) | 2024, 2025 (beide) | Langzeit 2023; 2024, 2025 (beide) | 2024, 2025 (beide; im JSON vorhanden) |
+89 PDFs: Sprachprüfung, Lösungen, Textblatt (Lesetext), Aufsatzthemen und einmal Korrekturhinweise zum Aufsatz. Nach mehreren Nachlieferungen liegen **Aufgaben, Lösungen, Textblätter und Aufsatzthemen für 2015–2025 vollständig** vor, für Langzeit und Kurzzeit.
 
 Zeiten und Hilfsmittel (aus den Deckblättern):
 
@@ -75,7 +69,7 @@ Weitere Befunde:
 - **Die Textblätter haben Zeilennummern** (5, 10, 15 …), auf die sich Fragen und Lösungen beziehen. Das bestätigt 4.1.
 - **Aufsatzthemen verweisen auf Material im PDF** (z. B. das Interview zu «Was bedeutet Familie?»). Es steht in den Themen-PDFs und kann angezeigt werden.
 - **Bewertungskriterien zum Aufsatz gibt es nur für Langzeit 2015** («Positiv fällt ins Gewicht, wenn … / Negativ, wenn …»). Für alle anderen Themen muss die Checkliste (5.3) aus der Aufgabenstellung abgeleitet werden.
-- **Das JSON und die PDFs widersprechen sich:** Langzeit 2020 hat Aufsatzthemen im PDF, fehlt aber im JSON; 2024 und 2025 sind im JSON, aber nicht als PDF da.
+- **Das JSON und die PDFs widersprechen sich:** Langzeit 2020 hat Aufsatzthemen im PDF, fehlt aber im JSON.
 - **Gescannt ohne Text:** 2020 komplett (Aufgaben, Lösungen, Aufsatz, Textblatt Langzeit). Dort geht Vorlesen (8.1) nur mit nachträglich erfasstem Text.
 - **Dateinamen sind nicht einheitlich** und lassen sich nicht automatisch zuordnen: `2020_sprachpruefung_kg.pdf` ist die **Lösung** Kurzzeit, `2020_sprachpruefung_kg1.pdf` die Aufgabe, `2020_sprachpruefung.pdf` die Aufgabe Langzeit, `2021_sprachprueufng_kg.pdf` die **Lösung** Kurzzeit 2021, `2016_textverstaendnis_teil_a.pdf` die Aufgabe Langzeit 2016, `2018_aufsatzthemen.pdf` und `2019_textblatt.pdf` gehören zu Langzeit.
 
@@ -209,8 +203,8 @@ Weitere Befunde:
 
 **Akzeptanzkriterien**
 - **Gegeben** eine Aufgabe mit Zwischenergebnissen im Korrekturschema (z. B. 2015 Aufgabe 1a: «459 s : 17 = 27 s», dann «19 min 35 s + 27 s = 20 min 2 s») **Wenn** das Kind den Lösungsweg öffnet **Dann** wird ein Zwischenergebnis nach dem anderen aufgedeckt.
-- **Gegeben** eine Aufgabe, zu der nur das Endergebnis vorliegt (Langzeit 2016–2019, 2021, 2022) **Wenn** das Kind den Lösungsweg öffnen will **Dann** sagt die App, dass kein Lösungsweg vorhanden ist, und zeigt nur das Endergebnis.
-- **Gegeben** Langzeit 2020 (keine Lösungen vorhanden) **Wenn** eine Aufgabe dieses Jahrgangs geöffnet wird **Dann** ist vor dem Lösen klar erkennbar, dass es keine Lösung gibt.
+- **Gegeben** eine Aufgabe, zu der nur das Endergebnis vorliegt (Langzeit 2016–2022) **Wenn** das Kind den Lösungsweg öffnen will **Dann** sagt die App, dass kein Lösungsweg vorhanden ist, und zeigt nur das Endergebnis.
+- **Gegeben** ein Jahrgang ohne Lösungen **Wenn** eine Aufgabe dieses Jahrgangs geöffnet wird **Dann** ist vor dem Lösen klar erkennbar, dass es keine Lösung gibt.
 
 ---
 
@@ -335,7 +329,7 @@ Weitere Befunde:
 - **Gegeben** keine bekannte Bestehensgrenze **Wenn** die Auswertung erscheint **Dann** wird keine Aussage über Bestehen gemacht.
 - **Gegeben** eine zweite Simulation **Wenn** die Auswertung erscheint **Dann** ist der Vergleich zur letzten Simulation desselben Fachs sichtbar.
 
-**Rahmenbedingungen (Simulation):** Restzeit aus der Systemuhr, nicht durch Uhrverstellen verlängerbar. Zeitzuschlag gemäss Eltern-Einstellung (Requirements 6.4). Originalzeiten aus den PDFs: Langzeit Mathematik 60, Sprachprüfung 45, Aufsatz 60 Minuten (zusammen 165); Kurzzeit Mathematik 90, Sprachprüfung 45, Aufsatz 90 Minuten (zusammen 225). Hilfsmittel wie im Original: Taschenrechner nur Kurzzeit-Mathematik, Wörterbuch nur Kurzzeit-Aufsatz. Eine vollständige Simulation braucht alle drei Teile eines Jahrgangs samt Lösungen; das ist heute nur für 2015–2023 der Fall (Langzeit 2020: ohne Mathematiklösungen; Langzeit 2023: ohne Textblatt). Kurzzeit-Auswertungen zeigen Punkte getrennt nach Algebra und Geometrie, wie in der offiziellen Punkteverteilung.
+**Rahmenbedingungen (Simulation):** Restzeit aus der Systemuhr, nicht durch Uhrverstellen verlängerbar. Zeitzuschlag gemäss Eltern-Einstellung (Requirements 6.4). Originalzeiten aus den PDFs: Langzeit Mathematik 60, Sprachprüfung 45, Aufsatz 60 Minuten (zusammen 165); Kurzzeit Mathematik 90, Sprachprüfung 45, Aufsatz 90 Minuten (zusammen 225). Hilfsmittel wie im Original: Taschenrechner nur Kurzzeit-Mathematik, Wörterbuch nur Kurzzeit-Aufsatz. Eine vollständige Simulation braucht alle drei Teile eines Jahrgangs samt Lösungen; das ist inzwischen für alle Jahrgänge 2015–2025 der Fall. Kurzzeit-Auswertungen zeigen Punkte getrennt nach Algebra und Geometrie, wie in der offiziellen Punkteverteilung.
 
 ---
 
@@ -409,7 +403,7 @@ Weitere Befunde:
 Durch die PDFs geklärt: Es gibt Lösungen (mit Lücken, siehe oben), die Punkte für Langzeit-Deutsch stehen in den PDFs, und die Originalzeiten sind bekannt.
 
 1. **Aufgaben aus den PDFs ausschneiden:** Schneidest du jede Aufgabe vorab als Bild zu, oder soll das JSON Seite und Bereich im PDF angeben? Wegen gescannter Seiten und unbrauchbarer Textschichten geht es nur über Bildausschnitte. Davon hängen 3.1, 4.1 und 5.1 ab.
-2. **Fehlende Dateien:** Kommen noch Mathematiklösungen Langzeit 2020, Deutschlösungen 2024, Textblatt Langzeit 2023, Textblätter 2024, Sprachprüfung 2025 (Aufgaben, Lösungen, Textblatt) und Aufsatzthemen 2024/2025? Sonst sind diese Jahrgänge nur eingeschränkt nutzbar und nicht simulierbar.
+2. **Fehlende Dateien:** Geklärt. Alle Aufgaben, Lösungen, Textblätter und Aufsatzthemen 2015–2025 liegen vor. Offizielle Korrekturhinweise zum Aufsatz gibt es weiterhin nur für Langzeit 2015.
 3. **JSON ergänzen:** Sollen die Punkte der Langzeit-Sprachprüfung, der Aufsatz Langzeit 2020 und die Einteilung Algebra/Geometrie (Kurzzeit-Mathematik) ins JSON übertragen werden? Alle drei stehen in den PDFs.
 4. **Korrekturhinweise übernehmen:** Sollen Musterantworten, Korrekturregeln und Bewertungsraster als Text ins JSON, damit die Selbstkorrektur sie direkt anzeigen kann (3.2, 4.3)? Oder reicht es, die Lösungsseite als Bild zu zeigen?
 5. **Eingabe in der App:** Soll Mathematik bewusst auf Papier bleiben (wie in der Prüfung), oder willst du mittelfristig Eingabe in der App (3.3, 4.4)? Das entscheidet, ob Lösungswerte und strukturierte Antwortoptionen ins JSON müssen.
