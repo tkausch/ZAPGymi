@@ -7,6 +7,7 @@ enum TaskListRoute: Hashable {
   case reviews(ExamTrack)
   case saved(ExamTrack)
   case weaknesses(ExamTrack)
+  case strengths(ExamTrack)
   case mathTopic(ExamTrack, String)
 }
 
@@ -55,6 +56,8 @@ struct TaskListRouteView: View {
         emptyDescription: "Löse zuerst mindestens \(TopicStat.minimumAttempts) Aufgaben in einem Thema. Dann stellt die App hier Aufgaben aus deinen schwächsten Themen zusammen.",
         footnote: practiceSet.isEmpty ? nil : "Aufgaben aus deinen schwächsten Themen, ungelöste zuerst."
       )
+    case .strengths(let track):
+      StrengthsView(track: track)
     case .mathTopic(let track, let topic):
       TaskListScreen(
         title: topic,

@@ -402,6 +402,19 @@ Weitere Befunde:
 - **Gegeben** noch keine gemerkten Aufgaben **Wenn** ich die Liste öffne **Dann** erklärt die App, wie man sich eine Aufgabe merkt.
 - **Gegeben** «Alle Daten löschen» **Wenn** die Löschung bestätigt ist **Dann** sind auch die Markierungen weg.
 
+### 7.6 Meine Stärken
+**Als** Kind **möchte ich** auf einen Blick sehen, in welchen Mathematik-Bereichen ich stark bin, **damit** ich Selbstvertrauen für die Prüfung gewinne und nicht nur meine Schwächen sehe.
+
+*Priorität:* Should · *umgesetzt (01.10.2026)*
+
+**Akzeptanzkriterien**
+- **Gegeben** die Startseite **Wenn** ich unter «Üben» direkt unter «Schwächen üben» auf «Meine Stärken» tippe **Dann** öffnet sich eine eigene Seite mit einem Netzdiagramm.
+- **Gegeben** eingeschätzte Mathematikaufgaben **Wenn** das Netzdiagramm erscheint **Dann** zeigt jede Achse einen Bereich (Kategorie) und den Anteil erreichter Punkte von 0 bis 100 %. Es sind die 8 Bereiche mit den meisten Prüfungspunkten des eigenen Prüfungstyps (Annahme: mehr Achsen sind auf dem iPhone nicht lesbar); die Achsen bleiben fest, damit man Veränderungen sieht.
+- **Gegeben** ein Bereich mit weniger als 5 eingeschätzten Aufgaben **Wenn** er im Diagramm erscheint **Dann** ist sein Punkt hohl (Wert noch unsicher); ein Bereich ohne Versuch hat keinen Punkt und heisst «noch offen», damit er nicht wie 0 % aussieht.
+- **Gegeben** Bereiche mit mindestens 5 Aufgaben und mindestens 70 % (Annahme) **Wenn** die Seite erscheint **Dann** stehen die bis zu 3 besten unter «Deine Stärken»; sonst erklärt die App, was es dafür braucht.
+- **Gegeben** das Diagramm **Wenn** jemand es nicht sehen kann oder Farben nicht unterscheidet **Dann** stehen alle Werte zusätzlich in der Liste «Alle Bereiche» und werden von VoiceOver vorgelesen; ein Tipp auf einen Bereich öffnet dessen Aufgaben.
+- **Gegeben** noch keine Mathematikaufgabe eingeschätzt **Wenn** die Seite geöffnet wird **Dann** erklärt sie, wie die Stärken entstehen.
+
 ## 8. Lesbarkeit und Zugänglichkeit
 
 ### 8.1 Aufgaben vergrössern und vorlesen lassen

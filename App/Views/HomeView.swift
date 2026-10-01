@@ -77,6 +77,10 @@ struct HomeView: View {
           NavigationLink(value: TaskListRoute.weaknesses(track)) {
             Label("Schwächen üben", systemImage: "target")
           }
+
+          NavigationLink(value: TaskListRoute.strengths(track)) {
+            Label("Meine Stärken", systemImage: "star")
+          }
         }
 
         Section("Diese Woche") {
