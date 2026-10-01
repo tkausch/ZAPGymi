@@ -1,0 +1,71 @@
+{
+  "appId": "6818196955",
+  "derived": {
+    "appStoreVersionScreenshotSets": {
+
+    },
+    "pricing": {
+      "automaticPrices": [
+
+      ]
+    }
+  },
+  "formatVersion": 1,
+  "gitignore": "created",
+  "resources": {
+    "ageRatingDeclaration": {
+      "fields": {
+        "ageRatingOverrideV2": "NONE",
+        "koreaAgeRatingOverride": "NONE"
+      },
+      "id": "dd4400f7-42d5-4c6c-ab82-3d77b4274f3b",
+      "type": "ageRatingDeclarations"
+    },
+    "app": {
+      "fields": {
+        "primaryLocale": "de-DE"
+      },
+      "id": "6818196955",
+      "type": "apps"
+    },
+    "appInfo": {
+      "fields": {
+
+      },
+      "id": "dd4400f7-42d5-4c6c-ab82-3d77b4274f3b",
+      "type": "appInfos"
+    },
+    "appInfoLocalization:de-DE": {
+      "fields": {
+        "name": "ZAP Gymi"
+      },
+      "id": "f55ba497-b072-41bb-ae4d-1214b1d80ffe",
+      "type": "appInfoLocalizations"
+    },
+    "appStoreVersion:IOS:1.0": {
+      "fields": {
+        "releaseType": "AFTER_APPROVAL",
+        "versionString": "1.0"
+      },
+      "id": "997a4829-a129-4ec6-932e-bac706071812",
+      "type": "appStoreVersions"
+    },
+    "appStoreVersionLocalization:IOS:1.0:de-DE": {
+      "fields": {
+
+      },
+      "id": "eef03c68-1107-47b8-a175-b8ba72924cbc",
+      "type": "appStoreVersionLocalizations"
+    },
+    "pricing": {
+      "fields": {
+        "baseTerritory": "USA",
+        "manualPrices": [
+
+        ]
+      },
+      "id": "6818196955",
+      "type": "appPriceSchedules"
+    }
+  }
+}
