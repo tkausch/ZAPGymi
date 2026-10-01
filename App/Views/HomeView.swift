@@ -22,6 +22,18 @@ struct HomeView: View {
 
     NavigationStack {
       List {
+        Section {
+          WeeklyGoalsCard(track: track)
+        } header: {
+          HStack {
+            Text("Wochenziele")
+            Spacer()
+            Button("Anpassen") { showsWeeklyGoals = true }
+              .font(.subheadline)
+              .textCase(nil)
+          }
+        }
+
         countdownSection
 
         if let session = sessions.first(where: { $0.track == track && ($0.state == .running || $0.state == .awaitingGrading) }) {
@@ -84,17 +96,6 @@ struct HomeView: View {
           }
         }
 
-        Section {
-          WeeklyGoalsCard(track: track)
-        } header: {
-          HStack {
-            Text("Wochenziele")
-            Spacer()
-            Button("Anpassen") { showsWeeklyGoals = true }
-              .font(.subheadline)
-              .textCase(nil)
-          }
-        }
       }
       .themedBackground()
       .navigationTitle("Heute")
@@ -135,26 +136,27 @@ struct HomeView: View {
           Button {
             showsExamDate = true
           } label: {
-            VStack(alignment: .leading, spacing: 4) {
-              Text(days == 1 ? "Noch 1 Tag" : "Noch \(days) Tage")
-                .font(.largeTitle.bold())
+            HStack {
+              Label(days == 1 ? "Noch 1 Tag bis zur Prüfung" : "Noch \(days) Tage bis zur Prüfung", systemImage: "calendar")
+                .font(.subheadline)
                 .foregroundStyle(.primary)
-              Text("bis zur Prüfung am \(examDate.formatted(date: .long, time: .omitted))")
+              Spacer(minLength: 8)
+              Text(examDate.formatted(date: .abbreviated, time: .omitted))
+                .font(.footnote)
                 .foregroundStyle(.secondary)
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
             .contentShape(.rect)
           }
           .buttonStyle(.plain)
           .accessibilityElement(children: .combine)
           .accessibilityHint("Prüfungsdatum ändern")
         } else if days == 0 {
-          Text("Heute ist Prüfung. Viel Erfolg!")
-            .font(.title2.bold())
+          Label("Heute ist Prüfung. Viel Erfolg!", systemImage: "star")
+            .font(.subheadline.bold())
         } else {
           VStack(alignment: .leading, spacing: 8) {
             Text("Das Prüfungsdatum ist vorbei.")
-              .font(.headline)
+              .font(.subheadline)
             Button("Neues Datum eintragen oder entfernen") {
               showsExamDate = true
             }
@@ -165,6 +167,7 @@ struct HomeView: View {
           showsExamDate = true
         } label: {
           Label("Prüfungsdatum eintragen", systemImage: "calendar")
+            .font(.subheadline)
         }
       }
     }

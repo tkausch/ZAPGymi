@@ -384,7 +384,7 @@ Weitere Befunde:
 *Priorität:* Should · *umgesetzt (01.10.2026, ersetzt «Dranbleiben ohne schlechtes Gewissen»)*
 
 **Akzeptanzkriterien**
-- **Gegeben** die Startseite **Wenn** sie erscheint **Dann** zeigt der Abschnitt «Wochenziele» (anstelle von «Diese Woche») vier konzentrische Ringe von aussen nach innen: Mathe-Aufgaben, Deutsch-Aufgaben, Übungstage, Aufsätze. Jeder Ring füllt sich mit dem Anteil am Ziel.
+- **Gegeben** die Startseite **Wenn** sie erscheint **Dann** zeigt der Abschnitt «Wochenziele» ganz oben (anstelle von «Diese Woche»; der Prüfungs-Countdown folgt darunter als schmale Zeile) vier konzentrische Ringe von aussen nach innen: Mathe-Aufgaben, Deutsch-Aufgaben, Übungstage, Aufsätze. Jeder Ring füllt sich mit dem Anteil am Ziel.
 - **Gegeben** die Ringe **Wenn** jemand die Farben nicht unterscheiden kann **Dann** stehen daneben bzw. darunter alle vier Ziele mit Namen und Zahl (z. B. «Mathe-Aufgaben 14/10») und ein Häkchen mit «erreicht». Die Ringfarben sind für benachbarte Ringe auf Farbenblindheit geprüft, hell und dunkel.
 - **Gegeben** «Anpassen» **Wenn** das Kind die Ziele ändert **Dann** kann es pro Woche einstellen: Mathe-Aufgaben (1–50, Standard 10), Deutsch-Aufgaben (1–30, Standard 5), Übungstage (1–7, Standard 4), Aufsätze (1–5, Standard 1) (Standardwerte: Annahme). Die Werte bleiben gespeichert.
 - **Gegeben** eine eingeschätzte Aufgabe **Wenn** der Fortschritt berechnet wird **Dann** zählt jede Aufgabe pro Woche einmal, auch aus einer Simulation; ein Aufsatz zählt nach der Einschätzung mit der Checkliste; ein Übungstag ist ein Tag mit mindestens einer Einschätzung. Die Woche beginnt am Montag.
