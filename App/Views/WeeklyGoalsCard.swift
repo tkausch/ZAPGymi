@@ -59,7 +59,9 @@ struct WeeklyGoalsCard: View {
         HStack(spacing: 8) {
           Circle()
             .fill(value.goal.color)
-            .frame(width: 10, height: 10)
+            .frame(width: 8, height: 8)
+            .padding(3)
+            .background(.black, in: .circle)
             .accessibilityHidden(true)
           Text(value.goal.title)
             .font(.subheadline)

@@ -57,7 +57,10 @@ struct WeeklyGoalsSheet: View {
         }
       } icon: {
         Image(systemName: goal.systemImage)
+          .font(.footnote.weight(.semibold))
           .foregroundStyle(goal.color)
+          .frame(width: 28, height: 28)
+          .background(.black, in: .rect(cornerRadius: 7))
       }
     }
   }

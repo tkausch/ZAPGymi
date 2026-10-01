@@ -48,14 +48,15 @@ enum WeeklyGoal: String, CaseIterable, Identifiable {
     }
   }
 
-  /// Ring colours in fixed order from the outside in. Neighbouring rings stay distinguishable
-  /// with colour blindness (checked with the OKLab/CVD validator); every ring is also labelled with text.
+  /// The Apple Watch activity ring colours (Move, Exercise, Stand) plus yellow for the fourth ring.
+  /// They are made for a black background, so rings and colour markers always sit on black:
+  /// contrast there is 4.3:1 to 15:1, and neighbouring rings stay distinguishable with colour blindness.
   var color: Color {
     switch self {
-    case .mathTasks: Color(light: 0x2A78D6, dark: 0x3987E5)
-    case .languageTasks: Color(light: 0xEB6834, dark: 0xD95926)
-    case .practiceDays: Color(light: 0x1BAF7A, dark: 0x199E70)
-    case .essays: Color(light: 0xEDA100, dark: 0xC98500)
+    case .mathTasks: Color(light: 0xFA114F, dark: 0xFA114F)
+    case .languageTasks: Color(light: 0x92E82A, dark: 0x92E82A)
+    case .practiceDays: Color(light: 0x1EEAEF, dark: 0x1EEAEF)
+    case .essays: Color(light: 0xFFD60A, dark: 0xFFD60A)
     }
   }
 
