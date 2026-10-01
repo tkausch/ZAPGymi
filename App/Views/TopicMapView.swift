@@ -33,7 +33,8 @@ private struct AreaTile: View {
   private var fill: AnyShapeStyle {
     switch progress.stage {
     case .neu: AnyShapeStyle(Color.clear)
-    case .wirdSicherer: AnyShapeStyle(theme.accent.opacity(0.15))
+    case .angefangen: AnyShapeStyle(theme.accent.opacity(0.15))
+    case .uebenNoetig: AnyShapeStyle(Color.orange.opacity(0.18))
     case .sicher: AnyShapeStyle(theme.accent.opacity(0.4))
     case .gemeistert: AnyShapeStyle(theme.accent)
     }
@@ -63,6 +64,9 @@ private struct AreaTile: View {
       if progress.stage == .neu {
         RoundedRectangle(cornerRadius: 14)
           .strokeBorder(Color.secondary.opacity(0.5), style: StrokeStyle(lineWidth: 1, dash: [4, 3]))
+      } else if progress.stage == .uebenNoetig {
+        RoundedRectangle(cornerRadius: 14)
+          .strokeBorder(Color.orange, lineWidth: 1.5)
       }
     }
     .contentShape(.rect(cornerRadius: 14))

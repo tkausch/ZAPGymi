@@ -435,9 +435,9 @@ Weitere Befunde:
 
 **Akzeptanzkriterien**
 - **Gegeben** die Themenlandkarte **Wenn** sie erscheint **Dann** zeigt sie die Bereiche des eigenen Prüfungstyps als Kacheln: Zahlen und Rechnen, Algebra und Gleichungen, Textaufgaben, Geometrie, Kombinatorik und Wahrscheinlichkeit, Textverständnis, Grammatik, Wortschatz, Zeichensetzung, Aufsatz. Die Themen aus dem JSON sind diesen Bereichen fest zugeordnet; Bereiche ohne Aufgaben fehlen.
-- **Gegeben** ein Bereich **Wenn** seine Stufe berechnet wird **Dann** gilt (Annahme): Neu = noch nichts geübt; Wird sicherer = angefangen; Sicher = mindestens 5 Aufgaben und 60 %; Gemeistert = mindestens 10 Aufgaben und 80 %, jeweils mit der Quote aus 7.1.
-- **Gegeben** eine Kachel **Wenn** sie erscheint **Dann** ist sie umso kräftiger in der Themenfarbe gefüllt, je höher die Stufe; «Neu» hat einen gestrichelten Rand. Stufe (Text und Symbol) und «x von y gelöst» stehen immer dabei, die Farbe ist nie das einzige Merkmal.
-- **Gegeben** nicht alle Bereiche gemeistert **Wenn** die Karte erscheint **Dann** steht darüber «Als Nächstes üben» mit dem Bereich der tiefsten Stufe (bei «Neu» der Bereich mit den meisten Prüfungsaufgaben, sonst der schwächste) und einer konkreten ungelösten Aufgabe zum direkten Start.
+- **Gegeben** ein Bereich **Wenn** seine Stufe berechnet wird **Dann** gilt (Annahme, Entscheid 01.10.2026): Neu = noch nichts geübt; Angefangen = weniger als 5 Aufgaben; Üben nötig = ab 5 Aufgaben, aber unter 60 %; Sicher = ab 5 Aufgaben und 60 %; Gemeistert = ab 10 Aufgaben und 80 %, jeweils mit der Quote aus 7.1. (Die frühere Stufe «Wird sicherer» war irreführend, weil sie keine Entwicklung mass und auch bei vielen Fehlern erschien.)
+- **Gegeben** eine Kachel **Wenn** sie erscheint **Dann** ist sie umso kräftiger in der Themenfarbe gefüllt, je höher die Stufe; «Neu» hat einen gestrichelten Rand, «Üben nötig» ist orange hinterlegt mit orangem Rand und Warnsymbol. Stufe (Text und Symbol) und «x von y gelöst» stehen immer dabei, die Farbe ist nie das einzige Merkmal.
+- **Gegeben** nicht alle Bereiche gemeistert **Wenn** die Karte erscheint **Dann** steht darüber «Als Nächstes üben» mit einer kurzen Begründung und einer konkreten ungelösten Aufgabe zum direkten Start. Reihenfolge: zuerst «Üben nötig» (der schwächste Bereich), dann «Neu» (der Bereich mit den meisten Prüfungsaufgaben), dann «Angefangen», dann «Sicher».
 - **Gegeben** ein Tipp auf eine Kachel **Wenn** er erfolgt **Dann** öffnet sich die Liste aller Aufgaben dieses Bereichs.
 
 ### 7.9 Probeprüfungs-Verlauf

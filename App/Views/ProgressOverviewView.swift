@@ -46,7 +46,7 @@ struct ProgressOverviewView: View {
         } header: {
           Text("Themenlandkarte")
         } footer: {
-          Text("Neu: noch nicht geübt. Wird sicherer: angefangen. Sicher: mindestens 5 Aufgaben und 60 %. Gemeistert: mindestens 10 Aufgaben und 80 %.")
+          Text("Neu: noch nicht geübt. Angefangen: weniger als 5 Aufgaben. Üben nötig: ab 5 Aufgaben, aber unter 60 %. Sicher: ab 5 Aufgaben und 60 %. Gemeistert: ab 10 Aufgaben und 80 %.")
         }
 
         Section {
@@ -123,7 +123,7 @@ struct ProgressOverviewView: View {
         .foregroundStyle(.secondary)
       Text(area.area.title)
         .font(.headline)
-      Text(area.stage == .neu ? "Diesen Bereich hast du noch nicht geübt." : "Hier kannst du am meisten dazugewinnen.")
+      Text(nextAreaReason(area.stage))
         .font(.subheadline)
         .foregroundStyle(.secondary)
       if let task {
@@ -138,6 +138,15 @@ struct ProgressOverviewView: View {
       NavigationLink(value: task) { content }
     } else {
       content
+    }
+  }
+
+  private func nextAreaReason(_ stage: MasteryStage) -> String {
+    switch stage {
+    case .uebenNoetig: "Hier liegst du noch unter 60 %. Gezieltes Üben lohnt sich am meisten."
+    case .neu: "Diesen Bereich hast du noch nicht geübt."
+    case .angefangen: "Noch ein paar Aufgaben, dann siehst du, wo du stehst."
+    case .sicher, .gemeistert: "Hier kannst du noch dazugewinnen."
     }
   }
 

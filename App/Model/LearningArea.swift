@@ -84,17 +84,19 @@ enum LearningArea: String, CaseIterable, Identifiable, Hashable {
   }
 }
 
-/// How confident the child is in an area, from new to mastered.
-enum MasteryStage: Int, CaseIterable, Comparable {
+/// How far the child is in an area.
+enum MasteryStage: CaseIterable {
   case neu
-  case wirdSicherer
+  case angefangen
+  case uebenNoetig
   case sicher
   case gemeistert
 
   var title: String {
     switch self {
     case .neu: "Neu"
-    case .wirdSicherer: "Wird sicherer"
+    case .angefangen: "Angefangen"
+    case .uebenNoetig: "Üben nötig"
     case .sicher: "Sicher"
     case .gemeistert: "Gemeistert"
     }
@@ -103,23 +105,32 @@ enum MasteryStage: Int, CaseIterable, Comparable {
   var systemImage: String {
     switch self {
     case .neu: "circle.dashed"
-    case .wirdSicherer: "arrow.up.right"
+    case .angefangen: "circle.lefthalf.filled"
+    case .uebenNoetig: "exclamationmark.triangle"
     case .sicher: "checkmark"
     case .gemeistert: "star.fill"
     }
   }
 
-  /// Assumptions: «Sicher» from 5 tasks and 60 %, «Gemeistert» from 10 tasks and 80 %,
-  /// both with the smoothed score (correct + 1) / (attempted + 2).
-  static func stage(attempted: Int, score: Double) -> MasteryStage {
-    if attempted == 0 { return .neu }
-    if attempted >= 10 && score >= 0.8 { return .gemeistert }
-    if attempted >= 5 && score >= 0.6 { return .sicher }
-    return .wirdSicherer
+  /// Order for «Als Nächstes üben»: real gaps first, then untouched and started areas.
+  var recommendationPriority: Int {
+    switch self {
+    case .uebenNoetig: 0
+    case .neu: 1
+    case .angefangen: 2
+    case .sicher: 3
+    case .gemeistert: 4
+    }
   }
 
-  static func < (lhs: MasteryStage, rhs: MasteryStage) -> Bool {
-    lhs.rawValue < rhs.rawValue
+  /// Assumptions, with the smoothed score (correct + 1) / (attempted + 2):
+  /// fewer than 5 tasks = Angefangen; from 5 tasks below 60 % = Üben nötig, from 60 % = Sicher;
+  /// from 10 tasks and 80 % = Gemeistert.
+  static func stage(attempted: Int, score: Double) -> MasteryStage {
+    if attempted == 0 { return .neu }
+    if attempted < 5 { return .angefangen }
+    if attempted >= 10 && score >= 0.8 { return .gemeistert }
+    return score >= 0.6 ? .sicher : .uebenNoetig
   }
 }
 
@@ -152,13 +163,13 @@ extension ProgressSummary {
     }
   }
 
-  /// The area to practise next: the lowest stage first; within it the weakest area, or for new areas
-  /// the one with the most exam tasks.
+  /// The area to practise next: «Üben nötig» first, then new, started and secure areas; within a stage
+  /// the weakest area, or for new areas the one with the most exam tasks.
   func nextArea(from progress: [AreaProgress]) -> AreaProgress? {
     progress
       .filter { $0.stage != .gemeistert && $0.attempted < $0.total }
       .min { lhs, rhs in
-        if lhs.stage != rhs.stage { return lhs.stage < rhs.stage }
+        if lhs.stage != rhs.stage { return lhs.stage.recommendationPriority < rhs.stage.recommendationPriority }
         if lhs.stage == .neu { return lhs.total > rhs.total }
         return lhs.score < rhs.score
       }
