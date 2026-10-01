@@ -77,27 +77,31 @@ struct ProgressOverviewView: View {
     let graded = summary.latestByTask.values
     let correct = graded.map(\.score).reduce(0, +)
     let rate = (correct + 1) / (Double(graded.count) + 2)
+    let subjects = Subject.allCases.map { subject in
+      let subjectTasks = tasks.filter { $0.subject == subject }
+      var counts: [TaskProgressSegment: Int] = [:]
+      for task in subjectTasks {
+        let segment: TaskProgressSegment = switch summary.status(of: task).outcome {
+        case .richtig: .richtig
+        case .teilweise: .teilweise
+        case .falsch: .falsch
+        case nil: .offen
+        }
+        counts[segment, default: 0] += 1
+      }
+      return SubjectProgress(subject: subject, counts: counts, total: subjectTasks.count)
+    }
 
-    return VStack(alignment: .leading, spacing: 12) {
+    return VStack(alignment: .leading, spacing: 14) {
       HStack(alignment: .firstTextBaseline) {
         Text(share, format: .percent.precision(.fractionLength(0)))
-          .font(.system(size: 44, weight: .bold, design: .rounded))
+          .font(.title.bold())
           .monospacedDigit()
         Text("aller Aufgaben bearbeitet")
           .foregroundStyle(.secondary)
       }
-      ProgressView(value: share)
-      ForEach(Subject.allCases) { subject in
-        let subjectTasks = tasks.filter { $0.subject == subject }
-        let subjectDone = subjectTasks.filter { summary.latestByTask[$0.id] != nil }.count
-        LabeledContent {
-          Text("\(subjectDone) von \(subjectTasks.count)")
-            .monospacedDigit()
-        } label: {
-          Label(subject.title, systemImage: subject.systemImage)
-        }
-        .font(.subheadline)
-      }
+      .accessibilityElement(children: .combine)
+      OverallProgressChart(subjects: subjects)
       if !graded.isEmpty {
         LabeledContent("Geschätzte Trefferquote") {
           Text(rate, format: .percent.precision(.fractionLength(0)))
@@ -107,7 +111,6 @@ struct ProgressOverviewView: View {
       }
     }
     .padding(.vertical, 4)
-    .accessibilityElement(children: .combine)
   }
 
   // MARK: - Als Nächstes üben

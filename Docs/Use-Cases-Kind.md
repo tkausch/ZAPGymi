@@ -424,7 +424,8 @@ Weitere Befunde:
 *Priorität:* Should · *umgesetzt (01.10.2026)*
 
 **Akzeptanzkriterien**
-- **Gegeben** der Tab «Fortschritt» **Wenn** er erscheint **Dann** steht zuoberst ein Link auf «Meine Stärken» (7.6), darunter der Gesamtfortschritt: Anteil bearbeiteter Aufgaben als grosse Zahl mit Balken, je Fach «x von y» und die geschätzte Trefferquote nach der Formel aus 7.1.
+- **Gegeben** der Tab «Fortschritt» **Wenn** er erscheint **Dann** steht zuoberst ein Link auf «Meine Stärken» (7.6), darunter der Gesamtfortschritt: Anteil aller bearbeiteten Aufgaben als Zahl, je Fach (Mathematik, Sprachprüfung, Aufsatz) ein Ringdiagramm (Kuchen mit Loch) mit den Anteilen richtig, teilweise, falsch und offen, in der Mitte der Anteil bearbeiteter Aufgaben und darunter «x von y», sowie die geschätzte Trefferquote nach der Formel aus 7.1.
+- **Gegeben** die Ringdiagramme **Wenn** jemand Farben nicht unterscheidet oder sie nicht sehen kann **Dann** nennt eine gemeinsame Legende jede Farbe mit Text und Anzahl, die Farben (Grün, Gelb, Rot, Grau) sind auf Farbenblindheit geprüft, und VoiceOver liest pro Fach alle Zahlen vor.
 - **Gegeben** noch nichts eingeschätzt **Wenn** der Tab erscheint **Dann** zeigt er 0 % und keine Trefferquote, ohne Fehlermeldung.
 
 ### 7.8 Themenlandkarte
