@@ -14,7 +14,7 @@ struct LearningTip: Identifiable {
       [
         LearningTip(
           title: "Alte Prüfungen nicht zu früh lösen",
-          text: "Löse die alten Prüfungen in dieser App nicht zu früh, sicher nicht vor März. Sonst wirst du sehr wahrscheinlich frustriert sein: Die Prüfungen verlangen den Stoff der 6. Klasse, und den lernst du erst im Laufe des Schuljahres. Dass du sie vorher lösen kannst, ist fast unmöglich, und das ist ganz normal.",
+          text: "Löse die alten Prüfungen in dieser App nicht zu früh. Sonst wirst du sehr wahrscheinlich frustriert sein: Die Prüfungen verlangen den Stoff der 6. Klasse, und den lernst du erst im Laufe des Schuljahres. Dass du sie vorher lösen kannst, ist fast unmöglich, und das ist ganz normal.",
           systemImage: "hourglass"
         ),
         LearningTip(
