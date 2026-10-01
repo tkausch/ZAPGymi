@@ -110,7 +110,8 @@ struct EssayDetailView: View {
     .navigationTitle("Aufsatz")
     .navigationBarTitleDisplayMode(.inline)
     .toolbar {
-      ToolbarItem(placement: .topBarTrailing) {
+      ToolbarItemGroup(placement: .topBarTrailing) {
+        PrintMenu(task: task, includesSolution: true)
         SaveTaskButton(task: task)
       }
     }

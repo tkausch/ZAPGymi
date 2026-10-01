@@ -168,7 +168,7 @@ Weitere Befunde:
 - **Gegeben** eine Aufgabe ohne PDF-Ausschnitt **Wenn** sie in einer Liste erscheint **Dann** ist sie als «noch nicht verfügbar» erkennbar und lässt sich nicht öffnen.
 - **Gegeben** eine Konstruktionsaufgabe (`category` Konstruktion) **Wenn** sie geöffnet wird **Dann** wird das Kind darauf hingewiesen, Zirkel und Geodreieck bereitzulegen.
 - **Gegeben** eine Langzeit-Aufgabe **Wenn** sie geöffnet wird **Dann** wird das Kind daran erinnert, ohne Taschenrechner zu rechnen; **gegeben** eine Kurzzeit-Aufgabe, **dann** wird gesagt, dass ein einfacher Taschenrechner erlaubt ist.
-- **Gegeben** eine Aufgabe auf Häuschenpapier im Original **Wenn** das Kind sie ausdrucken will **Dann** wird der Ausschnitt mit Lösungsfläche gedruckt (Annahme: Drucken ist Could).
+- **Gegeben** eine geöffnete Aufgabe **Wenn** das Kind sie auf Papier lösen will **Dann** kann es das Original-Prüfungsheft samt Häuschenpapier drucken (siehe 3.5).
 
 ### 3.2 Lösung aufdecken und sich selbst Punkte geben
 **Als** Kind Kurzzeit **möchte ich** nach dem Rechnen die offizielle Lösung sehen und mir selbst Punkte geben, auch Teilpunkte, **damit** meine Statistik ehrlich zeigt, wo ich stehe, obwohl die App meine Rechnung auf Papier nicht lesen kann.
@@ -207,6 +207,18 @@ Weitere Befunde:
 - **Gegeben** ein Jahrgang ohne Lösungen **Wenn** eine Aufgabe dieses Jahrgangs geöffnet wird **Dann** ist vor dem Lösen klar erkennbar, dass es keine Lösung gibt.
 
 ---
+
+### 3.5 Prüfung ausdrucken
+**Als** Kind, das wie an der echten Prüfung auf Papier lösen will, **möchte ich** das Original-Prüfungsheft direkt aus der geöffneten Aufgabe ausdrucken, **damit** ich mit Häuschenpapier, Lösungsfläche und Platz für Zwischenschritte arbeite und mich an das Prüfungsheft gewöhne.
+
+*Priorität:* Should · *umgesetzt (01.10.2026)*
+
+**Akzeptanzkriterien**
+- **Gegeben** eine geöffnete Mathematik- oder Sprachaufgabe **Wenn** das Kind in der Toolbar auf das Drucker-Symbol tippt **Dann** kann es das ganze Prüfungsheft des Jahrgangs drucken, bei der Sprachprüfung zusätzlich das Textblatt.
+- **Gegeben** die Lösung ist noch nicht aufgedeckt **Wenn** das Druckmenü erscheint **Dann** werden die Lösungen nicht angeboten; nach «Fertig – Lösung zeigen» sind sie druckbar.
+- **Gegeben** ein geöffnetes Aufsatzthema **Wenn** das Kind druckt **Dann** stehen das Themenblatt und, falls vorhanden, die offiziellen Korrekturhinweise zur Wahl.
+- **Gegeben** der Druckdialog von iOS **Wenn** er erscheint **Dann** kann das Kind Drucker, Seitenbereich, Anzahl Kopien und Papierformat wählen oder das PDF teilen.
+- **Gegeben** ein Gerät ohne Druckfunktion oder ein Jahrgang ohne PDF **Wenn** die Aufgabe geöffnet ist **Dann** erscheint kein Drucker-Symbol.
 
 ## 4. Sprachprüfung üben
 

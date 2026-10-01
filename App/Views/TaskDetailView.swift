@@ -47,6 +47,7 @@ struct TaskDetailView: View {
     .navigationBarTitleDisplayMode(.inline)
     .toolbar {
       ToolbarItemGroup(placement: .topBarTrailing) {
+        PrintMenu(task: task, includesSolution: solutionRevealed)
         SaveTaskButton(task: task)
         Button("Details", systemImage: "info") {
           showsInfo = true
