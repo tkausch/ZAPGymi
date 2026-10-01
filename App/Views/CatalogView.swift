@@ -6,6 +6,7 @@ struct TaskFilter: Equatable {
   var topic: String?
   var difficulty: Difficulty?
   var onlyOpen = false
+  var onlySaved = false
 
   var isActive: Bool { self != TaskFilter() }
 
@@ -15,6 +16,7 @@ struct TaskFilter: Equatable {
     if let topic { parts.append(topic) }
     if let difficulty { parts.append(difficulty.title) }
     if onlyOpen { parts.append("nur ungelöste") }
+    if onlySaved { parts.append("nur gemerkte") }
     return parts.joined(separator: " · ")
   }
 }
@@ -22,15 +24,18 @@ struct TaskFilter: Equatable {
 struct CatalogView: View {
   var track: ExamTrack
   @Environment(\.catalog) private var catalog
+  @Environment(\.modelContext) private var modelContext
   @Query private var attempts: [Attempt]
+  @Query private var saved: [SavedTask]
   @State private var subject = Subject.mathematik
   @State private var filter = TaskFilter()
   @State private var searchText = ""
 
   var body: some View {
     let summary = ProgressSummary(attempts: attempts)
-    let unfiltered = matching(filter: TaskFilter(year: filter.year, topic: filter.topic, difficulty: filter.difficulty), summary: summary)
-    let tasks = matching(filter: filter, summary: summary)
+    let savedIDs = Set(saved.map(\.taskID))
+    let unfiltered = matching(filter: TaskFilter(year: filter.year, topic: filter.topic, difficulty: filter.difficulty, onlySaved: filter.onlySaved), summary: summary, savedIDs: savedIDs)
+    let tasks = matching(filter: filter, summary: summary, savedIDs: savedIDs)
     let years = Set(tasks.map(\.year)).sorted(by: >)
 
     NavigationStack {
@@ -62,8 +67,9 @@ struct CatalogView: View {
           Section(String(year)) {
             ForEach(tasks.filter { $0.year == year }) { task in
               NavigationLink(value: task) {
-                TaskRow(task: task, status: summary.status(of: task), showsYear: false)
+                TaskRow(task: task, status: summary.status(of: task), showsYear: false, isSaved: savedIDs.contains(task.id))
               }
+              .saveSwipeAction(for: task, isSaved: savedIDs.contains(task.id), in: modelContext)
             }
           }
         }
@@ -120,6 +126,7 @@ struct CatalogView: View {
       }
 
       Toggle("Nur ungelöste", isOn: $filter.onlyOpen)
+      Toggle("Nur gemerkte", isOn: $filter.onlySaved)
 
       if filter.isActive {
         Button("Filter zurücksetzen", role: .destructive) {
@@ -141,6 +148,14 @@ struct CatalogView: View {
       } actions: {
         Button("Gelöste Aufgaben zeigen") { filter.onlyOpen = false }
       }
+    } else if filter.onlySaved && saved.isEmpty {
+      ContentUnavailableView {
+        Label("Noch nichts gemerkt", systemImage: "bookmark")
+      } description: {
+        Text("Tippe in einer Aufgabe auf das Lesezeichen oder wische in der Liste nach rechts, um dir eine Aufgabe zu merken.")
+      } actions: {
+        Button("Alle Aufgaben zeigen") { filter.onlySaved = false }
+      }
     } else if !searchText.isEmpty && !filter.isActive {
       ContentUnavailableView.search(text: searchText)
     } else {
@@ -157,7 +172,7 @@ struct CatalogView: View {
     }
   }
 
-  private func matching(filter: TaskFilter, summary: ProgressSummary) -> [ExamTask] {
+  private func matching(filter: TaskFilter, summary: ProgressSummary, savedIDs: Set<String>) -> [ExamTask] {
     let query = searchText.trimmingCharacters(in: .whitespaces)
     return catalog.tasks(for: track, subject: subject)
       .filter { task in
@@ -165,6 +180,7 @@ struct CatalogView: View {
           && (filter.topic == nil || task.topic == filter.topic)
           && (filter.difficulty == nil || task.difficulty == filter.difficulty)
           && (!filter.onlyOpen || summary.status(of: task).outcome == nil)
+          && (!filter.onlySaved || savedIDs.contains(task.id))
           && (query.isEmpty
             || task.text.localizedStandardContains(query)
             || task.topic.localizedStandardContains(query)

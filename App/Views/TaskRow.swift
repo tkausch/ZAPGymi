@@ -4,13 +4,22 @@ struct TaskRow: View {
   var task: ExamTask
   var status: TaskStatus
   var showsYear = true
+  var isSaved = false
 
   var body: some View {
     HStack(alignment: .top, spacing: 12) {
       StatusIcon(status: status)
       VStack(alignment: .leading, spacing: 4) {
-        Text(showsYear ? "\(task.displayTitle) · \(String(task.year))" : task.displayTitle)
-          .font(.headline)
+        HStack(alignment: .firstTextBaseline, spacing: 6) {
+          Text(showsYear ? "\(task.displayTitle) · \(String(task.year))" : task.displayTitle)
+            .font(.headline)
+          if isSaved {
+            Image(systemName: "bookmark.fill")
+              .font(.caption)
+              .foregroundStyle(.tint)
+              .accessibilityLabel("Gemerkt")
+          }
+        }
         Text(task.text)
           .font(.subheadline)
           .foregroundStyle(.secondary)

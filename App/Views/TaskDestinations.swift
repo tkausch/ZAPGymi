@@ -36,13 +36,7 @@ struct TaskListRouteView: View {
     let summary = ProgressSummary(attempts: attempts)
     switch route {
     case .reviews(let track):
-      TaskListScreen(
-        title: "Zu wiederholen",
-        tasks: summary.dueReviews(in: catalog.tasks(for: track)),
-        emptyTitle: "Nichts fällig",
-        emptyDescription: "Alle bearbeiteten Aufgaben stimmen. Löse eine neue Aufgabe.",
-        footnote: "Aufgaben, die nicht ganz gestimmt haben, stehen hier, bis du sie richtig löst."
-      )
+      ReviewListView(track: track)
     case .weaknesses(let track):
       let practiceSet = summary.weaknessPracticeSet(from: catalog.tasks(for: track))
       TaskListScreen(
@@ -73,10 +67,13 @@ struct TaskListScreen: View {
   var emptyTitle: String
   var emptyDescription: String
   var footnote: String?
+  @Environment(\.modelContext) private var modelContext
   @Query private var attempts: [Attempt]
+  @Query private var saved: [SavedTask]
 
   var body: some View {
     let summary = ProgressSummary(attempts: attempts)
+    let savedIDs = Set(saved.map(\.taskID))
     List {
       if let footnote {
         Section {
@@ -87,8 +84,9 @@ struct TaskListScreen: View {
       }
       ForEach(tasks) { task in
         NavigationLink(value: task) {
-          TaskRow(task: task, status: summary.status(of: task))
+          TaskRow(task: task, status: summary.status(of: task), isSaved: savedIDs.contains(task.id))
         }
+        .saveSwipeAction(for: task, isSaved: savedIDs.contains(task.id), in: modelContext)
       }
     }
     .overlay {

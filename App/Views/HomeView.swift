@@ -8,6 +8,7 @@ struct HomeView: View {
   @Query(sort: \Attempt.date) private var attempts: [Attempt]
   @Query(sort: \EssayDraft.updatedAt, order: .reverse) private var drafts: [EssayDraft]
   @Query private var sessions: [ExamSession]
+  @Query(sort: \SavedTask.savedAt, order: .reverse) private var saved: [SavedTask]
   @AppStorage(SettingsKey.examDate) private var examDateValue: Double = 0
   @State private var showsSettings = false
   @State private var showsExamDate = false
@@ -15,7 +16,8 @@ struct HomeView: View {
   var body: some View {
     let tasks = catalog.tasks(for: track)
     let summary = ProgressSummary(attempts: attempts)
-    let reviews = summary.dueReviews(in: tasks)
+    let savedIDs = Set(ReviewListView.savedTasks(saved, catalog: catalog, track: track).map(\.id))
+    let reviewCount = savedIDs.union(summary.dueReviews(in: tasks).map(\.id)).count
 
     NavigationStack {
       List {
@@ -58,7 +60,7 @@ struct HomeView: View {
         Section("Üben") {
           NavigationLink(value: TaskListRoute.reviews(track)) {
             LabeledContent {
-              Text(reviews.count, format: .number)
+              Text(reviewCount, format: .number)
             } label: {
               Label("Zu wiederholen", systemImage: "arrow.counterclockwise")
             }

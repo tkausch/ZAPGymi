@@ -109,6 +109,11 @@ struct EssayDetailView: View {
     .themedBackground()
     .navigationTitle("Aufsatz")
     .navigationBarTitleDisplayMode(.inline)
+    .toolbar {
+      ToolbarItem(placement: .topBarTrailing) {
+        SaveTaskButton(task: task)
+      }
+    }
     .navigationDestination(item: $openedDraft) { draft in
       EssayEditorView(task: task, draft: draft)
     }

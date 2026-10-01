@@ -10,6 +10,6 @@ struct AppDefinition: App {
       RootView()
         .environment(\.catalog, catalog)
     }
-    .modelContainer(for: [Attempt.self, EssayDraft.self, ExamSession.self])
+    .modelContainer(for: [Attempt.self, EssayDraft.self, ExamSession.self, SavedTask.self])
   }
 }

@@ -46,7 +46,8 @@ struct TaskDetailView: View {
     .navigationTitle("\(task.displayTitle) · \(String(task.year))")
     .navigationBarTitleDisplayMode(.inline)
     .toolbar {
-      ToolbarItem(placement: .topBarTrailing) {
+      ToolbarItemGroup(placement: .topBarTrailing) {
+        SaveTaskButton(task: task)
         Button("Details", systemImage: "info") {
           showsInfo = true
         }

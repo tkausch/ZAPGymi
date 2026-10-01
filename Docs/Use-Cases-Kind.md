@@ -377,6 +377,18 @@ Weitere Befunde:
 
 ---
 
+### 7.5 Aufgaben merken
+**Als** wiederkehrendes Kind **möchte ich** mir Aufgaben merken, die mir besonders geholfen haben, **damit** ich sie vor der Prüfung gezielt nochmals anschauen kann, auch wenn ich sie richtig gelöst habe.
+
+*Priorität:* Should · *umgesetzt (01.10.2026)*
+
+**Akzeptanzkriterien**
+- **Gegeben** eine geöffnete Aufgabe oder ein Aufsatzthema **Wenn** ich auf das Lesezeichen tippe **Dann** ist die Aufgabe gemerkt; ein zweiter Tipp entfernt die Markierung. In Listen geht das auch mit einem Wisch nach rechts.
+- **Gegeben** gemerkte Aufgaben **Wenn** ich «Zu wiederholen» öffne **Dann** stehen sie im eigenen Abschnitt «Gemerkt», neueste zuerst, getrennt von den Aufgaben, die noch nicht ganz richtig sind. Eine gemerkte Aufgabe erscheint nur einmal.
+- **Gegeben** eine gemerkte Aufgabe wird richtig gelöst **Wenn** ich «Zu wiederholen» öffne **Dann** ist sie weiterhin dort, bis ich die Markierung entferne. Die Markierung ist unabhängig vom Ergebnis (richtig, teilweise, falsch).
+- **Gegeben** der Aufgabenkatalog **Wenn** ich den Filter «Nur gemerkte» wähle **Dann** sehe ich nur gemerkte Aufgaben; ist noch nichts gemerkt, erklärt die App, wie das geht.
+- **Gegeben** «Alle Daten löschen» **Wenn** die Löschung bestätigt ist **Dann** sind auch die Markierungen weg.
+
 ## 8. Lesbarkeit und Zugänglichkeit
 
 ### 8.1 Aufgaben vergrössern und vorlesen lassen
