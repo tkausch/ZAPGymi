@@ -19,7 +19,7 @@ struct LearningTip: Identifiable {
         ),
         LearningTip(
           title: "Früh anfangen, kurz üben",
-          text: "Starte 4 bis 6 Monate vor der Prüfung. 3 bis 5 Stunden pro Woche reichen, aufgeteilt in Häppchen von 10 bis 15 Minuten.",
+          text: "Starte 4 bis 6 Monate vor der Prüfung. 3 bis 5 Stunden pro Woche reichen, aufgeteilt in Häppchen von 10 bis 15 Minuten. Vergleiche nach jedem Aufgabenblock deine Resultate mit den Lösungen. Versuche, deine Fehler zu verstehen und daraus zu lernen.",
           systemImage: "calendar"
         ),
         LearningTip(
