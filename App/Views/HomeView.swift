@@ -12,6 +12,7 @@ struct HomeView: View {
   @AppStorage(SettingsKey.examDate) private var examDateValue: Double = 0
   @State private var showsSettings = false
   @State private var showsExamDate = false
+  @State private var showsWeeklyGoals = false
 
   var body: some View {
     let tasks = catalog.tasks(for: track)
@@ -83,17 +84,16 @@ struct HomeView: View {
           }
         }
 
-        Section("Diese Woche") {
-          let days = summary.practiceDaysThisWeek()
-          VStack(alignment: .leading, spacing: 8) {
-            Text("\(days) von \(ProgressSummary.weeklyGoal) Übungstagen")
-              .font(.headline)
-            ProgressView(value: Double(min(days, ProgressSummary.weeklyGoal)), total: Double(ProgressSummary.weeklyGoal))
-            Text(weekMessage(days: days))
-              .font(.footnote)
-              .foregroundStyle(.secondary)
+        Section {
+          WeeklyGoalsCard(track: track)
+        } header: {
+          HStack {
+            Text("Wochenziele")
+            Spacer()
+            Button("Anpassen") { showsWeeklyGoals = true }
+              .font(.subheadline)
+              .textCase(nil)
           }
-          .accessibilityElement(children: .combine)
         }
       }
       .themedBackground()
@@ -110,6 +110,9 @@ struct HomeView: View {
       }
       .sheet(isPresented: $showsExamDate) {
         ExamDateSheet()
+      }
+      .sheet(isPresented: $showsWeeklyGoals) {
+        WeeklyGoalsSheet()
       }
       .examTaskDestinations()
     }
@@ -165,15 +168,5 @@ struct HomeView: View {
         }
       }
     }
-  }
-
-  private func weekMessage(days: Int) -> String {
-    if days >= ProgressSummary.weeklyGoal {
-      return track.usesSimpleLanguage ? "Toll, du hast dein Wochenziel erreicht!" : "Wochenziel erreicht."
-    }
-    if days == 0 {
-      return track.usesSimpleLanguage ? "Heute ist ein guter Tag zum Üben. Schon eine Aufgabe zählt." : "Schon eine Aufgabe zählt als Übungstag."
-    }
-    return track.usesSimpleLanguage ? "Weiter so! Jede Aufgabe zählt." : "Jede Aufgabe zählt als Übungstag."
   }
 }

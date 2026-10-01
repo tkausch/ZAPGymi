@@ -32,8 +32,6 @@ struct TopicStat: Identifiable {
 struct ProgressSummary {
   /// Assumption: a practice set has ten tasks.
   static let practiceSetSize = 10
-  /// Assumption: four practice days per week are a good routine.
-  static let weeklyGoal = 4
 
   private(set) var latestByTask: [String: Attempt] = [:]
   private let attempts: [Attempt]

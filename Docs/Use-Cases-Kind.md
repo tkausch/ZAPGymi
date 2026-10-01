@@ -378,17 +378,17 @@ Weitere Befunde:
 - **Gegeben** eine wiederholte Aufgabe mit voller Punktzahl **Wenn** sie eingestuft ist **Dann** kommt sie erst nach längerer Frist (Annahme: 10 Tage) oder gar nicht mehr.
 - **Gegeben** eine leere Wiederholungsliste **Wenn** sie geöffnet wird **Dann** sagt die App, dass nichts ansteht, und schlägt eine neue Übung vor.
 
-### 7.4 Dranbleiben ohne schlechtes Gewissen
-**Als** Kind Langzeit **möchte ich** sehen, an wie vielen Tagen ich diese Woche geübt habe, **damit** ich stolz auf meine Routine bin, ohne dass ein verpasster Tag alles zunichte macht.
+### 7.4 Wochenziele wie bei der Apple Watch
+**Als** Kind **möchte ich** mir Wochenziele setzen und auf der Startseite als Ringe sehen, wie weit ich bin, **damit** ich eine Routine aufbaue und stolz auf das Erreichte bin, ohne dass ein verpasster Tag alles zunichte macht.
 
-*Priorität:* Could
+*Priorität:* Should · *umgesetzt (01.10.2026, ersetzt «Dranbleiben ohne schlechtes Gewissen»)*
 
 **Akzeptanzkriterien**
-- **Gegeben** Übungstage in der aktuellen Woche **Wenn** die Startseite erscheint **Dann** ist die Anzahl sichtbar (z. B. «3 von 4 Tagen», Wochenziel Annahme: 4).
-- **Gegeben** ein verpasster Tag **Wenn** die App am nächsten Tag geöffnet wird **Dann** gibt es keinen Vorwurf und keinen verlorenen «Rekord», sondern einen Vorschlag für heute.
-- **Gegeben** eine Übung unter 5 Minuten (Annahme) **Wenn** der Tag bewertet wird **Dann** zählt er trotzdem als Übungstag.
-
----
+- **Gegeben** die Startseite **Wenn** sie erscheint **Dann** zeigt der Abschnitt «Wochenziele» (anstelle von «Diese Woche») vier konzentrische Ringe von aussen nach innen: Mathe-Aufgaben, Deutsch-Aufgaben, Übungstage, Aufsätze. Jeder Ring füllt sich mit dem Anteil am Ziel.
+- **Gegeben** die Ringe **Wenn** jemand die Farben nicht unterscheiden kann **Dann** stehen daneben bzw. darunter alle vier Ziele mit Namen und Zahl (z. B. «Mathe-Aufgaben 14/10») und ein Häkchen mit «erreicht». Die Ringfarben sind für benachbarte Ringe auf Farbenblindheit geprüft, hell und dunkel.
+- **Gegeben** «Anpassen» **Wenn** das Kind die Ziele ändert **Dann** kann es pro Woche einstellen: Mathe-Aufgaben (1–50, Standard 10), Deutsch-Aufgaben (1–30, Standard 5), Übungstage (1–7, Standard 4), Aufsätze (1–5, Standard 1) (Standardwerte: Annahme). Die Werte bleiben gespeichert.
+- **Gegeben** eine eingeschätzte Aufgabe **Wenn** der Fortschritt berechnet wird **Dann** zählt jede Aufgabe pro Woche einmal, auch aus einer Simulation; ein Aufsatz zählt nach der Einschätzung mit der Checkliste; ein Übungstag ist ein Tag mit mindestens einer Einschätzung. Die Woche beginnt am Montag.
+- **Gegeben** nicht alle Ziele erreicht **Wenn** die Startseite erscheint **Dann** steht ermutigend, wie viele Ziele geschafft sind und wie viele Tage die Woche noch hat, ohne Vorwurf; sind alle erreicht, gratuliert die App.
 
 ### 7.5 Aufgaben merken
 **Als** wiederkehrendes Kind **möchte ich** mir Aufgaben merken, die mir besonders geholfen haben, **damit** ich sie vor der Prüfung gezielt nochmals anschauen kann, auch wenn ich sie richtig gelöst habe.
