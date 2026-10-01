@@ -5,6 +5,7 @@ import SwiftUI
 /// All links in a stack must be value-based, otherwise opening a task pops the list again.
 enum TaskListRoute: Hashable {
   case reviews(ExamTrack)
+  case saved(ExamTrack)
   case weaknesses(ExamTrack)
   case mathTopic(ExamTrack, String)
 }
@@ -36,7 +37,15 @@ struct TaskListRouteView: View {
     let summary = ProgressSummary(attempts: attempts)
     switch route {
     case .reviews(let track):
-      ReviewListView(track: track)
+      TaskListScreen(
+        title: "Zu wiederholen",
+        tasks: summary.dueReviews(in: catalog.tasks(for: track)),
+        emptyTitle: "Nichts zu wiederholen",
+        emptyDescription: "Alle bearbeiteten Aufgaben stimmen. Löse eine neue Aufgabe.",
+        footnote: "Aufgaben, die nicht ganz gestimmt haben, stehen hier, bis du sie richtig löst."
+      )
+    case .saved(let track):
+      SavedTasksView(track: track)
     case .weaknesses(let track):
       let practiceSet = summary.weaknessPracticeSet(from: catalog.tasks(for: track))
       TaskListScreen(

@@ -384,9 +384,10 @@ Weitere Befunde:
 
 **Akzeptanzkriterien**
 - **Gegeben** eine geöffnete Aufgabe oder ein Aufsatzthema **Wenn** ich auf das Lesezeichen tippe **Dann** ist die Aufgabe gemerkt; ein zweiter Tipp entfernt die Markierung. In Listen geht das auch mit einem Wisch nach rechts.
-- **Gegeben** gemerkte Aufgaben **Wenn** ich «Zu wiederholen» öffne **Dann** stehen sie im eigenen Abschnitt «Gemerkt», neueste zuerst, getrennt von den Aufgaben, die noch nicht ganz richtig sind. Eine gemerkte Aufgabe erscheint nur einmal.
-- **Gegeben** eine gemerkte Aufgabe wird richtig gelöst **Wenn** ich «Zu wiederholen» öffne **Dann** ist sie weiterhin dort, bis ich die Markierung entferne. Die Markierung ist unabhängig vom Ergebnis (richtig, teilweise, falsch).
+- **Gegeben** gemerkte Aufgaben **Wenn** ich auf der Startseite unter «Üben» die Zeile «Gemerkte Aufgaben» (direkt unter «Zu wiederholen», mit Anzahl) antippe **Dann** öffnet sich eine eigene Liste mit allen gemerkten Aufgaben, neueste zuerst. «Zu wiederholen» zeigt nur Aufgaben, die nicht ganz richtig waren.
+- **Gegeben** eine gemerkte Aufgabe wird richtig gelöst **Wenn** ich «Gemerkte Aufgaben» öffne **Dann** ist sie weiterhin dort, bis ich die Markierung entferne. Die Markierung ist unabhängig vom Ergebnis (richtig, teilweise, falsch).
 - **Gegeben** der Aufgabenkatalog **Wenn** ich den Filter «Nur gemerkte» wähle **Dann** sehe ich nur gemerkte Aufgaben; ist noch nichts gemerkt, erklärt die App, wie das geht.
+- **Gegeben** noch keine gemerkten Aufgaben **Wenn** ich die Liste öffne **Dann** erklärt die App, wie man sich eine Aufgabe merkt.
 - **Gegeben** «Alle Daten löschen» **Wenn** die Löschung bestätigt ist **Dann** sind auch die Markierungen weg.
 
 ## 8. Lesbarkeit und Zugänglichkeit

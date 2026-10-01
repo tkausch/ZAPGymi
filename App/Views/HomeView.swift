@@ -16,8 +16,8 @@ struct HomeView: View {
   var body: some View {
     let tasks = catalog.tasks(for: track)
     let summary = ProgressSummary(attempts: attempts)
-    let savedIDs = Set(ReviewListView.savedTasks(saved, catalog: catalog, track: track).map(\.id))
-    let reviewCount = savedIDs.union(summary.dueReviews(in: tasks).map(\.id)).count
+    let reviewCount = summary.dueReviews(in: tasks).count
+    let savedCount = SavedTasksView.savedTasks(saved, catalog: catalog, track: track).count
 
     NavigationStack {
       List {
@@ -63,6 +63,14 @@ struct HomeView: View {
               Text(reviewCount, format: .number)
             } label: {
               Label("Zu wiederholen", systemImage: "arrow.counterclockwise")
+            }
+          }
+
+          NavigationLink(value: TaskListRoute.saved(track)) {
+            LabeledContent {
+              Text(savedCount, format: .number)
+            } label: {
+              Label("Gemerkte Aufgaben", systemImage: "bookmark")
             }
           }
 
