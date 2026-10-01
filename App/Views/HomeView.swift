@@ -52,13 +52,20 @@ struct HomeView: View {
         }
 
         Section("Vorschlag für heute") {
-          if let suggestion = summary.suggestion(from: tasks) {
-            NavigationLink(value: suggestion) {
-              TaskRow(task: suggestion, status: summary.status(of: suggestion))
+          ForEach(Subject.gradable) { subject in
+            if let suggestion = summary.suggestion(from: tasks, subject: subject) {
+              NavigationLink(value: suggestion) {
+                VStack(alignment: .leading, spacing: 6) {
+                  Label(subject.title, systemImage: subject.systemImage)
+                    .font(.caption.weight(.semibold))
+                    .foregroundStyle(.secondary)
+                  TaskRow(task: suggestion, status: summary.status(of: suggestion))
+                }
+              }
+            } else {
+              Label("\(subject.title): alle Aufgaben gelöst. Stark!", systemImage: "checkmark.seal")
+                .foregroundStyle(.secondary)
             }
-          } else {
-            Text("Du hast alle Aufgaben gelöst. Stark!")
-              .foregroundStyle(.secondary)
           }
         }
 

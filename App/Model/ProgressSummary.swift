@@ -103,26 +103,34 @@ struct ProgressSummary {
     return Array((open + retry).prefix(Self.practiceSetSize))
   }
 
-  /// The next task to practise: easy math first for beginners, later the least practised topic.
-  func suggestion(from tasks: [ExamTask]) -> ExamTask? {
-    let open = tasks.filter { Subject.gradable.contains($0.subject) && latestByTask[$0.id] == nil && $0.isAvailable }
-    if latestByTask.isEmpty {
-      return open
-        .filter { $0.subject == .mathematik && $0.difficulty == .leicht }
-        .max { $0.year < $1.year }
-        ?? open.first
+  /// The next task to practise in one subject: an easy, recent task for beginners,
+  /// later the weakest topic, otherwise the least practised one.
+  func suggestion(from tasks: [ExamTask], subject: Subject) -> ExamTask? {
+    let subjectTasks = tasks.filter { $0.subject == subject }
+    let open = subjectTasks.filter { latestByTask[$0.id] == nil && $0.isAvailable }
+    // Newer exams first, and within an exam in task order, so practice follows the booklet.
+    let inOrder: (ExamTask, ExamTask) -> Bool = { lhs, rhs in
+      lhs.year != rhs.year ? lhs.year > rhs.year : lhs.sortKey < rhs.sortKey
     }
-    if let weakest = weakTopics(for: tasks).first,
-       let task = open.first(where: { $0.subject == weakest.subject && $0.topic == weakest.topic }) {
+    let hasPractised = subjectTasks.contains { latestByTask[$0.id] != nil }
+    if !hasPractised {
+      let easy = open.filter { $0.difficulty == .leicht }.sorted(by: inOrder)
+      return easy.first ?? open.sorted(by: inOrder).first
+    }
+    if let weakest = weakTopics(for: subjectTasks).first,
+       let task = open.filter({ $0.topic == weakest.topic }).sorted(by: inOrder).first {
       return task
     }
-    let practiceCount = Dictionary(grouping: latestByTask.keys.compactMap { id in tasks.first { $0.id == id } }, by: \.topic)
+    let practiceCount = Dictionary(grouping: subjectTasks.filter { latestByTask[$0.id] != nil }, by: \.topic)
       .mapValues(\.count)
     return open.min { lhs, rhs in
       let lhsCount = practiceCount[lhs.topic] ?? 0
       let rhsCount = practiceCount[rhs.topic] ?? 0
       if lhsCount != rhsCount { return lhsCount < rhsCount }
-      return (lhs.difficulty ?? .mittel) < (rhs.difficulty ?? .mittel)
+      let lhsDifficulty = lhs.difficulty ?? .mittel
+      let rhsDifficulty = rhs.difficulty ?? .mittel
+      if lhsDifficulty != rhsDifficulty { return lhsDifficulty < rhsDifficulty }
+      return inOrder(lhs, rhs)
     }
   }
 

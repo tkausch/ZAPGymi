@@ -105,7 +105,8 @@ Weitere Befunde:
 **Akzeptanzkriterien**
 - **Gegeben** eine angefangene, nicht abgegebene Aufgabe oder Simulation **Wenn** die App geöffnet wird **Dann** wird sie als Erstes zum Fortsetzen angeboten.
 - **Gegeben** fällige Wiederholungen (siehe 7.3) **Wenn** die Startseite erscheint **Dann** ist ihre Anzahl sichtbar und sie lassen sich mit einer Aktion starten.
-- **Gegeben** nichts ist angefangen und nichts fällig **Wenn** die Startseite erscheint **Dann** wird eine neue Übung aus einem noch wenig geübten Thema vorgeschlagen.
+- **Gegeben** die Startseite **Wenn** sie erscheint **Dann** zeigt «Vorschlag für heute» immer zwei Aufgaben, eine aus Mathematik und eine aus der Sprachprüfung, je mit dem Fach als Überschrift (Entscheid 01.10.2026: einfacher für das Kind als ein einzelner Vorschlag). Pro Fach: zu Beginn eine leichte Aufgabe aus einem neueren Jahrgang, danach eine ungelöste Aufgabe aus dem schwächsten Thema, sonst aus dem am wenigsten geübten Thema.
+- **Gegeben** alle Aufgaben eines Fachs sind gelöst **Wenn** die Startseite erscheint **Dann** steht an dieser Stelle eine Gratulation statt eines Vorschlags.
 - **Gegeben** ein eingetragenes Prüfungsdatum **Wenn** die Startseite erscheint **Dann** zeigt sie die verbleibenden Tage.
 
 ### 1.3 Kurze Übung für wenig Zeit
