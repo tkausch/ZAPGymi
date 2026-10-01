@@ -8,6 +8,8 @@ enum TaskListRoute: Hashable {
   case saved(ExamTrack)
   case weaknesses(ExamTrack)
   case strengths(ExamTrack)
+  case area(ExamTrack, LearningArea)
+  case topicDetails(ExamTrack)
   case mathTopic(ExamTrack, String)
 }
 
@@ -58,6 +60,18 @@ struct TaskListRouteView: View {
       )
     case .strengths(let track):
       StrengthsView(track: track)
+    case .area(let track, let area):
+      TaskListScreen(
+        title: area.title,
+        tasks: catalog.tasks(for: track)
+          .filter { LearningArea.area(for: $0) == area }
+          .sorted { $0.year != $1.year ? $0.year > $1.year : $0.sortKey < $1.sortKey },
+        emptyTitle: "Keine Aufgaben",
+        emptyDescription: "Zu diesem Bereich gibt es keine Aufgaben.",
+        footnote: nil
+      )
+    case .topicDetails(let track):
+      TopicDetailsView(track: track)
     case .mathTopic(let track, let topic):
       TaskListScreen(
         title: topic,

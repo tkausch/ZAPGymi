@@ -47,3 +47,17 @@ final class ExamSession {
     case cancelled
   }
 }
+
+extension ExamSession {
+  /// Result of a graded simulation from 0 to 1: share of points, or share of correct answers
+  /// for exams without points.
+  func result(from attempts: [Attempt]) -> Double? {
+    let sessionAttempts = attempts.filter { $0.sessionID == id }
+    guard !sessionAttempts.isEmpty else { return nil }
+    let maxPoints = sessionAttempts.compactMap(\.maxPoints).reduce(0, +)
+    if maxPoints > 0 {
+      return Double(sessionAttempts.compactMap(\.points).reduce(0, +)) / Double(maxPoints)
+    }
+    return sessionAttempts.map(\.outcome.score).reduce(0, +) / Double(sessionAttempts.count)
+  }
+}

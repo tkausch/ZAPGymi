@@ -354,7 +354,8 @@ Weitere Befunde:
 *Priorität:* Should
 
 **Akzeptanzkriterien**
-- **Gegeben** kein Fortschritt **Wenn** die Fortschrittsseite erscheint **Dann** erklärt sie, wie der Fortschritt entsteht, und verweist auf die erste Übung.
+- **Gegeben** der Tab «Fortschritt» **Wenn** das Kind die Quoten je Thema sehen will **Dann** findet es sie unter «Alle Themen im Detail» am Ende des Tabs (seit 01.10.2026; oben stehen Gesamtfortschritt, Themenlandkarte und Probeprüfungs-Verlauf, siehe 7.7–7.9).
+- **Gegeben** kein Fortschritt **Wenn** die Detailseite erscheint **Dann** steht pro Fach, dass noch keine Aufgabe eingeschätzt ist.
 - **Gegeben** weniger als 5 eingestufte Aufgaben in einem Thema (Annahme) **Wenn** die Seite erscheint **Dann** steht dort «noch zu wenig Daten» statt einer Quote.
 - **Gegeben** eingeschätzte Aufgaben in einem Thema **Wenn** die Quote berechnet wird **Dann** gilt (richtig + 1) / (versucht + 2) (Entscheid 01.10.2026). «richtig» ist die Summe der erreichten Anteile pro Aufgabe (volle Punktzahl 1, Teilpunkte anteilig, falsch 0), «versucht» die Anzahl eingeschätzter Aufgaben, je mit dem letzten Versuch. So zählen falsche Antworten mit, und wenige Versuche ergeben keine 0 % oder 100 % (1 von 1 richtig = 67 %). Dieselbe Quote gilt für «Schwächen üben» (7.2) und «Meine Stärken» (7.6); die Auswertung einer einzelnen Simulation zeigt dagegen die tatsächlich erreichten Punkte.
 - **Gegeben** genug Daten **Wenn** die Seite erscheint **Dann** sind die Themen nach Gewicht sortierbar, also nach Quote mal Häufigkeit in den Prüfungen (z. B. Termumformung erscheint 37-mal, Koordinatensystem einmal).
@@ -416,6 +417,38 @@ Weitere Befunde:
 - **Gegeben** Bereiche mit mindestens 5 Aufgaben und mindestens 70 % (Annahme) **Wenn** die Seite erscheint **Dann** stehen die bis zu 3 besten unter «Deine Stärken»; sonst erklärt die App, was es dafür braucht.
 - **Gegeben** das Diagramm **Wenn** jemand es nicht sehen kann oder Farben nicht unterscheidet **Dann** stehen alle Werte zusätzlich in der Liste «Alle Bereiche» und werden von VoiceOver vorgelesen; ein Tipp auf einen Bereich öffnet dessen Aufgaben.
 - **Gegeben** noch keine Mathematikaufgabe eingeschätzt **Wenn** die Seite geöffnet wird **Dann** erklärt sie, wie die Stärken entstehen.
+
+### 7.7 Gesamtfortschritt
+**Als** Kind **möchte ich** oben im Tab «Fortschritt» auf einen Blick sehen, wie weit ich insgesamt bin, **damit** ich merke, dass sich das Üben lohnt.
+
+*Priorität:* Should · *umgesetzt (01.10.2026)*
+
+**Akzeptanzkriterien**
+- **Gegeben** der Tab «Fortschritt» **Wenn** er erscheint **Dann** steht zuoberst ein Link auf «Meine Stärken» (7.6), darunter der Gesamtfortschritt: Anteil bearbeiteter Aufgaben als grosse Zahl mit Balken, je Fach «x von y» und die geschätzte Trefferquote nach der Formel aus 7.1.
+- **Gegeben** noch nichts eingeschätzt **Wenn** der Tab erscheint **Dann** zeigt er 0 % und keine Trefferquote, ohne Fehlermeldung.
+
+### 7.8 Themenlandkarte
+**Als** Kind **möchte ich** die Prüfungsbereiche als Felder sehen, eingefärbt nach meinem Stand, **damit** ich Lücken sofort erkenne und weiss, was ich als Nächstes üben soll.
+
+*Priorität:* Should · *umgesetzt (01.10.2026)*
+
+**Akzeptanzkriterien**
+- **Gegeben** die Themenlandkarte **Wenn** sie erscheint **Dann** zeigt sie die Bereiche des eigenen Prüfungstyps als Kacheln: Zahlen und Rechnen, Algebra und Gleichungen, Textaufgaben, Geometrie, Kombinatorik und Wahrscheinlichkeit, Textverständnis, Grammatik, Wortschatz, Zeichensetzung, Aufsatz. Die Themen aus dem JSON sind diesen Bereichen fest zugeordnet; Bereiche ohne Aufgaben fehlen.
+- **Gegeben** ein Bereich **Wenn** seine Stufe berechnet wird **Dann** gilt (Annahme): Neu = noch nichts geübt; Wird sicherer = angefangen; Sicher = mindestens 5 Aufgaben und 60 %; Gemeistert = mindestens 10 Aufgaben und 80 %, jeweils mit der Quote aus 7.1.
+- **Gegeben** eine Kachel **Wenn** sie erscheint **Dann** ist sie umso kräftiger in der Themenfarbe gefüllt, je höher die Stufe; «Neu» hat einen gestrichelten Rand. Stufe (Text und Symbol) und «x von y gelöst» stehen immer dabei, die Farbe ist nie das einzige Merkmal.
+- **Gegeben** nicht alle Bereiche gemeistert **Wenn** die Karte erscheint **Dann** steht darüber «Als Nächstes üben» mit dem Bereich der tiefsten Stufe (bei «Neu» der Bereich mit den meisten Prüfungsaufgaben, sonst der schwächste) und einer konkreten ungelösten Aufgabe zum direkten Start.
+- **Gegeben** ein Tipp auf eine Kachel **Wenn** er erfolgt **Dann** öffnet sich die Liste aller Aufgaben dieses Bereichs.
+
+### 7.9 Probeprüfungs-Verlauf
+**Als** Kind und als Elternteil **möchte ich** die Ergebnisse der Probeprüfungen über die Zeit mit einer Zielmarke sehen, **damit** ich ehrlich einschätzen kann, ob ich auf Kurs bin, denn die Simulation bildet die echte Prüfungssituation ab.
+
+*Priorität:* Should · *umgesetzt (01.10.2026)*
+
+**Akzeptanzkriterien**
+- **Gegeben** ausgewertete Simulationen **Wenn** der Verlauf erscheint **Dann** zeigt ein Liniendiagramm das Ergebnis jeder Simulation (Anteil der Punkte, bei Prüfungen ohne Punkte Anteil richtiger Antworten) über die Zeit, eine Linie je Fach, und eine gestrichelte Zielmarke bei 70 % (Annahme). Abgebrochene Simulationen zählen nicht.
+- **Gegeben** das Diagramm **Wenn** jemand Farben nicht unterscheidet oder es nicht sehen kann **Dann** unterscheiden sich die Fächer auch durch die Punktform (Kreis, Quadrat), die Legende zeigt nur vorhandene Fächer, VoiceOver liest jeden Punkt vor, und «Werte anzeigen» listet alle Ergebnisse als Text.
+- **Gegeben** die letzte Probeprüfung **Wenn** der Verlauf erscheint **Dann** steht, ab wann die nächste empfohlen ist (alle zwei Wochen); ist sie fällig, führt «Zeit für die nächste Probeprüfung» zum Tab «Prüfung».
+- **Gegeben** noch keine ausgewertete Simulation **Wenn** der Verlauf erscheint **Dann** erklärt er, wie er entsteht, und führt zur Prüfungssimulation.
 
 ## 8. Lesbarkeit und Zugänglichkeit
 
