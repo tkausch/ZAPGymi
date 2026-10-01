@@ -14,7 +14,11 @@ struct TopicStat: Identifiable {
   var topic: String
   var attempted: Int
   var total: Int
+  /// Estimated share of points, smoothed with (correct + 1) / (attempted + 2),
+  /// so that wrong answers count and a single result does not show 0 % or 100 %.
   var score: Double
+  /// Plain share of points actually reached, e.g. for the result of one simulation.
+  var reachedShare: Double
 
   var id: String { "\(subject.rawValue)-\(topic)" }
 
@@ -63,8 +67,17 @@ struct ProgressSummary {
     let grouped = Dictionary(grouping: tasks.filter { $0.subject == subject }, by: \.topic)
     return grouped.map { topic, topicTasks in
       let graded = topicTasks.compactMap { latestByTask[$0.id] }
-      let score = graded.isEmpty ? 0 : graded.map(\.score).reduce(0, +) / Double(graded.count)
-      return TopicStat(subject: subject, topic: topic, attempted: graded.count, total: topicTasks.count, score: score)
+      // A fully correct task counts 1, partial points count proportionally, a wrong task 0.
+      let correct = graded.map(\.score).reduce(0, +)
+      let attempted = Double(graded.count)
+      return TopicStat(
+        subject: subject,
+        topic: topic,
+        attempted: graded.count,
+        total: topicTasks.count,
+        score: (correct + 1) / (attempted + 2),
+        reachedShare: graded.isEmpty ? 0 : correct / attempted
+      )
     }
     .sorted { lhs, rhs in
       if lhs.hasEnoughData != rhs.hasEnoughData { return lhs.hasEnoughData }

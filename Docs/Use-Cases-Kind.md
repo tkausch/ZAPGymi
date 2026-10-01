@@ -355,6 +355,7 @@ Weitere Befunde:
 **Akzeptanzkriterien**
 - **Gegeben** kein Fortschritt **Wenn** die Fortschrittsseite erscheint **Dann** erklärt sie, wie der Fortschritt entsteht, und verweist auf die erste Übung.
 - **Gegeben** weniger als 5 eingestufte Aufgaben in einem Thema (Annahme) **Wenn** die Seite erscheint **Dann** steht dort «noch zu wenig Daten» statt einer Quote.
+- **Gegeben** eingeschätzte Aufgaben in einem Thema **Wenn** die Quote berechnet wird **Dann** gilt (richtig + 1) / (versucht + 2) (Entscheid 01.10.2026). «richtig» ist die Summe der erreichten Anteile pro Aufgabe (volle Punktzahl 1, Teilpunkte anteilig, falsch 0), «versucht» die Anzahl eingeschätzter Aufgaben, je mit dem letzten Versuch. So zählen falsche Antworten mit, und wenige Versuche ergeben keine 0 % oder 100 % (1 von 1 richtig = 67 %). Dieselbe Quote gilt für «Schwächen üben» (7.2) und «Meine Stärken» (7.6); die Auswertung einer einzelnen Simulation zeigt dagegen die tatsächlich erreichten Punkte.
 - **Gegeben** genug Daten **Wenn** die Seite erscheint **Dann** sind die Themen nach Gewicht sortierbar, also nach Quote mal Häufigkeit in den Prüfungen (z. B. Termumformung erscheint 37-mal, Koordinatensystem einmal).
 
 ### 7.2 Schwächen gezielt üben
@@ -409,7 +410,7 @@ Weitere Befunde:
 
 **Akzeptanzkriterien**
 - **Gegeben** die Startseite **Wenn** ich unter «Üben» direkt unter «Schwächen üben» auf «Meine Stärken» tippe **Dann** öffnet sich eine eigene Seite mit einem Netzdiagramm.
-- **Gegeben** eingeschätzte Mathematikaufgaben **Wenn** das Netzdiagramm erscheint **Dann** zeigt jede Achse einen Bereich (Kategorie) und den Anteil erreichter Punkte von 0 bis 100 %. Es sind die 8 Bereiche mit den meisten Prüfungspunkten des eigenen Prüfungstyps (Annahme: mehr Achsen sind auf dem iPhone nicht lesbar); die Achsen bleiben fest, damit man Veränderungen sieht.
+- **Gegeben** eingeschätzte Mathematikaufgaben **Wenn** das Netzdiagramm erscheint **Dann** zeigt jede Achse einen Bereich (Kategorie) und die geschätzte Quote von 0 bis 100 % nach der Formel aus 7.1, (richtig + 1) / (versucht + 2). Es sind die 8 Bereiche mit den meisten Prüfungspunkten des eigenen Prüfungstyps (Annahme: mehr Achsen sind auf dem iPhone nicht lesbar); die Achsen bleiben fest, damit man Veränderungen sieht.
 - **Gegeben** ein Bereich mit weniger als 5 eingeschätzten Aufgaben **Wenn** er im Diagramm erscheint **Dann** ist sein Punkt hohl (Wert noch unsicher); ein Bereich ohne Versuch hat keinen Punkt und heisst «noch offen», damit er nicht wie 0 % aussieht.
 - **Gegeben** Bereiche mit mindestens 5 Aufgaben und mindestens 70 % (Annahme) **Wenn** die Seite erscheint **Dann** stehen die bis zu 3 besten unter «Deine Stärken»; sonst erklärt die App, was es dafür braucht.
 - **Gegeben** das Diagramm **Wenn** jemand es nicht sehen kann oder Farben nicht unterscheidet **Dann** stehen alle Werte zusätzlich in der Liste «Alle Bereiche» und werden von VoiceOver vorgelesen; ein Tipp auf einen Bereich öffnet dessen Aufgaben.

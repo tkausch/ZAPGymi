@@ -39,7 +39,7 @@ struct SimulationResultView: View {
       Section("Nach Thema") {
         ForEach(summary.topicStats(for: tasks, subject: session.subject)) { stat in
           LabeledContent(stat.topic) {
-            Text(stat.score, format: .percent.precision(.fractionLength(0)))
+            Text(stat.reachedShare, format: .percent.precision(.fractionLength(0)))
               .monospacedDigit()
           }
         }
