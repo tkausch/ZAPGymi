@@ -64,9 +64,17 @@ struct LearningTip: Identifiable {
     }
   }
 
-  static let general = LearningTip(
-    title: "Verstehen statt auswendig lernen",
-    text: "Frag dich bei jeder Lösung, warum sie funktioniert. Was du verstanden hast, kannst du auch bei neuen Aufgaben anwenden.",
-    systemImage: "lightbulb"
-  )
+  /// Tips for both exam types.
+  static let general: [LearningTip] = [
+    LearningTip(
+      title: "Verstehen statt auswendig lernen",
+      text: "Frag dich bei jeder Lösung, warum sie funktioniert. Was du verstanden hast, kannst du auch bei neuen Aufgaben anwenden.",
+      systemImage: "lightbulb"
+    ),
+    LearningTip(
+      title: "Mehrere Probeprüfungen",
+      text: "Löse mehrere Prüfungen aus früheren Jahren. So siehst du, wo du stehst und welche Aufgaben dir noch Mühe machen. Ähnliche Aufgabentypen kommen immer wieder vor: Wer sie kennt, ist an der Prüfung im Vorteil.",
+      systemImage: "doc.on.doc"
+    ),
+  ]
 }

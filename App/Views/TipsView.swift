@@ -13,7 +13,9 @@ struct TipsView: View {
         }
 
         Section("Für alle") {
-          TipRow(tip: LearningTip.general)
+          ForEach(LearningTip.general) { tip in
+            TipRow(tip: tip)
+          }
         }
       }
       .themedBackground()
