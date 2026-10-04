@@ -23,6 +23,12 @@ struct WeeklyGoalsSheet: View {
         }
 
         Section {
+          Label("Jeder geschlossene Ring bringt \(RewardKind.ringClosed.stars) Sterne, alle vier zusammen \(RewardKind.allRings.stars) Sterne extra. Sterne gibt es ab \(WeeklyGoal.mathTasks.rewardMinimum) Mathe-Aufgaben, \(WeeklyGoal.languageTasks.rewardMinimum) Deutsch-Aufgaben und \(WeeklyGoal.practiceDays.rewardMinimum) Übungstagen pro Woche.", systemImage: "star.fill")
+            .font(.footnote)
+            .labelStyle(StarLabelStyle())
+        }
+
+        Section {
           Button("Standardwerte") {
             mathTarget = WeeklyGoal.mathTasks.defaultTarget
             languageTarget = WeeklyGoal.languageTasks.defaultTarget

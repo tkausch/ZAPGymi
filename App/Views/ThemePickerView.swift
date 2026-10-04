@@ -1,8 +1,12 @@
+import SwiftData
 import SwiftUI
 
 /// A grid with a live preview of every theme.
 struct ThemePicker: View {
   @Binding var selection: AppTheme
+  /// Themes that still have to be unlocked, with their price in stars.
+  var lockedCosts: [AppTheme: Int] = [:]
+  var onLockedSelection: (AppTheme) -> Void = { _ in }
 
   private let columns = [GridItem(.adaptive(minimum: 150), spacing: 16)]
 
@@ -10,12 +14,17 @@ struct ThemePicker: View {
     LazyVGrid(columns: columns, spacing: 16) {
       ForEach(AppTheme.allCases) { theme in
         Button {
-          selection = theme
+          if lockedCosts[theme] != nil {
+            onLockedSelection(theme)
+          } else {
+            selection = theme
+          }
         } label: {
-          ThemePreviewCard(theme: theme, isSelected: theme == selection)
+          ThemePreviewCard(theme: theme, isSelected: theme == selection, lockedCost: lockedCosts[theme])
         }
         .buttonStyle(.plain)
         .accessibilityLabel(theme.title)
+        .accessibilityValue(lockedCosts[theme].map { "Gesperrt, \($0) Sterne" } ?? "")
         .accessibilityAddTraits(theme == selection ? .isSelected : [])
       }
     }
@@ -26,6 +35,7 @@ struct ThemePicker: View {
 private struct ThemePreviewCard: View {
   var theme: AppTheme
   var isSelected: Bool
+  var lockedCost: Int?
 
   var body: some View {
     VStack(alignment: .leading, spacing: 8) {
@@ -70,6 +80,11 @@ private struct ThemePreviewCard: View {
           Image(systemName: "checkmark.circle.fill")
             .foregroundStyle(theme.accent)
             .accessibilityHidden(true)
+        } else if let lockedCost {
+          Label("\(lockedCost)", systemImage: "lock.fill")
+            .font(.footnote.monospacedDigit())
+            .foregroundStyle(.secondary)
+            .accessibilityHidden(true)
         }
       }
     }
@@ -80,15 +95,35 @@ private struct ThemePreviewCard: View {
 /// The theme picker as its own screen, used from the settings.
 struct ThemeSettingsView: View {
   @AppStorage(SettingsKey.theme) private var themeRaw = AppTheme.standard.rawValue
+  @Query private var awards: [StarAward]
+  @Query private var unlocks: [UnlockedReward]
+  @State private var pendingItem: RewardItem?
 
   var body: some View {
+    let wallet = StarWallet(awards: awards, unlocks: unlocks)
+    let lockedCosts = Dictionary(uniqueKeysWithValues: AppTheme.allCases
+      .filter { $0.rawValue != themeRaw && !wallet.isUnlocked(.theme($0)) }
+      .map { ($0, $0.starCost) })
+
     ScrollView {
-      ThemePicker(selection: Binding {
-        AppTheme(rawValue: themeRaw) ?? .standard
-      } set: {
-        themeRaw = $0.rawValue
-      })
+      VStack(alignment: .leading, spacing: 16) {
+        Label("Du hast \(wallet.balance) Sterne. Gesperrte Themen schaltest du mit Sternen frei.", systemImage: "star.fill")
+          .font(.footnote)
+          .foregroundStyle(.secondary)
+        ThemePicker(selection: Binding {
+          AppTheme(rawValue: themeRaw) ?? .standard
+        } set: {
+          themeRaw = $0.rawValue
+        }, lockedCosts: lockedCosts) { theme in
+          pendingItem = .theme(theme)
+        }
+      }
       .padding()
+    }
+    .unlockConfirmation(item: $pendingItem, wallet: wallet) { item in
+      if case .theme(let theme) = item {
+        themeRaw = theme.rawValue
+      }
     }
     .themedBackground()
     .navigationTitle("Farbthema")

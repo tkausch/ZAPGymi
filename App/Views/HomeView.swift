@@ -9,6 +9,8 @@ struct HomeView: View {
   @Query(sort: \EssayDraft.updatedAt, order: .reverse) private var drafts: [EssayDraft]
   @Query private var sessions: [ExamSession]
   @Query(sort: \SavedTask.savedAt, order: .reverse) private var saved: [SavedTask]
+  @Query private var awards: [StarAward]
+  @Query private var unlocks: [UnlockedReward]
   @AppStorage(SettingsKey.examDate) private var examDateValue: Double = 0
   @State private var showsSettings = false
   @State private var showsExamDate = false
@@ -24,6 +26,7 @@ struct HomeView: View {
       List {
         Section {
           WeeklyGoalsCard(track: track)
+          starsRow
         } header: {
           HStack {
             Text("Wochenziele")
@@ -122,8 +125,35 @@ struct HomeView: View {
       .sheet(isPresented: $showsWeeklyGoals) {
         WeeklyGoalsSheet()
       }
+      .navigationDestination(for: HomeRoute.self) { route in
+        switch route {
+        case .rewards: RewardsView()
+        }
+      }
       .examTaskDestinations()
     }
+  }
+
+  private var starsRow: some View {
+    let wallet = StarWallet(awards: awards, unlocks: unlocks)
+    return NavigationLink(value: HomeRoute.rewards) {
+      HStack(spacing: 12) {
+        WornMascotView(stage: wallet.mascotStage, size: 44)
+        VStack(alignment: .leading, spacing: 2) {
+          Text("Sterne und Belohnungen")
+            .font(.subheadline.weight(.semibold))
+          Text("\(MascotStage.mascotName) ist ein \(wallet.mascotStage.title)")
+            .font(.footnote)
+            .foregroundStyle(.secondary)
+        }
+        Spacer(minLength: 8)
+        Label("\(wallet.balance)", systemImage: "star.fill")
+          .font(.headline.monospacedDigit())
+          .labelStyle(StarLabelStyle())
+      }
+    }
+    .accessibilityElement(children: .combine)
+    .accessibilityLabel("Sterne und Belohnungen, \(wallet.balance) Sterne")
   }
 
   private var openDraft: EssayDraft? {
@@ -179,4 +209,8 @@ struct HomeView: View {
       }
     }
   }
+}
+
+enum HomeRoute: Hashable {
+  case rewards
 }

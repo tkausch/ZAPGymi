@@ -39,6 +39,21 @@ enum WeeklyGoal: String, CaseIterable, Identifiable {
     }
   }
 
+  /// Rings only earn stars from this target on, so a goal set very low does not pay out.
+  var rewardMinimum: Int {
+    switch self {
+    case .mathTasks: 5
+    case .languageTasks: 3
+    case .practiceDays: 3
+    case .essays: 1
+    }
+  }
+
+  /// The target the child set, read outside of views.
+  var currentTarget: Int {
+    UserDefaults.standard.object(forKey: settingsKey) as? Int ?? defaultTarget
+  }
+
   var range: ClosedRange<Int> {
     switch self {
     case .mathTasks: 1...50

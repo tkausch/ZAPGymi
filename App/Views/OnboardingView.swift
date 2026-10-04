@@ -85,9 +85,9 @@ struct OnboardingView: View {
         .padding(.top, 12)
 
         VStack(alignment: .leading, spacing: 8) {
-          Text("Wähle deinen Look")
+          Text("Wähle dein Start-Thema")
             .font(.largeTitle.bold())
-          Text("So sieht die App für dich aus. Du kannst das Thema jederzeit in den Einstellungen wechseln.")
+          Text("Dieses Thema gehört dir sofort. Weitere Themen schaltest du später mit Sternen frei, die du beim Üben verdienst.")
             .foregroundStyle(.secondary)
         }
 

@@ -60,7 +60,7 @@ struct SettingsView: View {
         } header: {
           Text("Daten")
         } footer: {
-          Text("Profil, Fortschritt, gemerkte Aufgaben, Aufsätze und Simulationen sind nur auf diesem Gerät gespeichert. Wenn du die App löschst oder das Gerät wechselst, gehen sie verloren.")
+          Text("Profil, Fortschritt, gemerkte Aufgaben, Aufsätze, Simulationen und Sterne sind nur auf diesem Gerät gespeichert. Wenn du die App löschst oder das Gerät wechselst, gehen sie verloren.")
         }
 
         Section("Über") {
@@ -83,7 +83,7 @@ struct SettingsView: View {
       .confirmationDialog("Alle Daten löschen?", isPresented: $confirmsDeletion, titleVisibility: .visible) {
         Button("Alles löschen", role: .destructive, action: deleteAll)
       } message: {
-        Text("Profil, Fortschritt, gemerkte Aufgaben, Aufsätze und Simulationen werden gelöscht. Das lässt sich nicht rückgängig machen.")
+        Text("Profil, Fortschritt, gemerkte Aufgaben, Aufsätze, Simulationen und Sterne werden gelöscht. Das lässt sich nicht rückgängig machen.")
       }
     }
     // An open sheet does not pick up tint changes from the app, so apply the theme here too.
@@ -96,8 +96,11 @@ struct SettingsView: View {
     try? modelContext.delete(model: EssayDraft.self)
     try? modelContext.delete(model: ExamSession.self)
     try? modelContext.delete(model: SavedTask.self)
+    try? modelContext.delete(model: StarAward.self)
+    try? modelContext.delete(model: UnlockedReward.self)
     try? modelContext.save()
     examDateValue = 0
+    RewardEngine.reset()
     themeRaw = AppTheme.standard.rawValue
     appearanceRaw = AppearanceMode.automatic.rawValue
     dismiss()
